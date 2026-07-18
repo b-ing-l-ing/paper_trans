@@ -1,0 +1,14 @@
+[project]
+name = "paper-trans"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "instructor>=1.15.4",
+    "openai>=2.46.0",
+    "pillow>=12.3.0",
+    "pydantic>=2.13.4",
+    "pymupdf>=1.28.0",
+    "python-dotenv>=1.2.2",
+]
