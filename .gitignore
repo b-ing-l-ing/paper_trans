@@ -14,4 +14,12 @@ wheels/
 
 # Generated output
 output/
+output_*/
 PDFs/
+
+# Session / temp
+session.json
+tempCodeRunnerFile.py
+test_ext.py
+run_mm.py
+list_models.py

@@ -1,14 +1,28 @@
 [project]
 name = "paper-trans"
-version = "0.1.0"
-description = "Add your description here"
+version = "0.3.0"
+description = "通用论文数据提取工具 — 从科学论文 PDF 中提取结构化数据（表格/图表/数值），输出 Markdown + JSON"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "google-genai>=2.14.0",
+    "google-generativeai>=0.8.6",
     "instructor>=1.15.4",
     "openai>=2.46.0",
+    "pdfplumber>=0.11.10",
     "pillow>=12.3.0",
+    "playwright>=1.52.0",
+    "playwright-stealth>=2.0.3",
     "pydantic>=2.13.4",
     "pymupdf>=1.28.0",
+    "pymupdf-layout>=1.28.0",
     "python-dotenv>=1.2.2",
+    "typer>=0.15.0",
 ]
+
+[project.scripts]
+paper-trans = "paper_trans.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
