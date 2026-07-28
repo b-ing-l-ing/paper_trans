@@ -49,20 +49,24 @@ def extract_data(
     )
 
 
-def review_extraction(data: PaperData, text: str, model: str | None = None) -> PaperData | None:
+def review_extraction(data: PaperData, text: str, model: str | None = None, tables: list[dict] | None = None) -> PaperData | None:
     """自查：审核提取结果，如有遗漏/错误返回修正版。
 
     Args:
         data: 首次提取的结果。
         text: 论文全文。
         model: 模型名称，None 则使用默认配置。
+        tables: 结构化表格数据，可选。
 
     Returns:
         修正后的 PaperData，或 None（表示无需修正）。
     """
     client = get_client()
     data_json = data.model_dump_json(indent=2)
-    prompt = build_review_prompt(data_json, text, settings.review_text_limit)
+    content = text
+    if tables:
+        content += "\n\n" + _format_tables_for_llm(tables)
+    prompt = build_review_prompt(data_json, content, settings.review_text_limit)
     model_name = model or settings.model_name
 
     logger.info("正在进行自查审核...")
@@ -164,7 +168,7 @@ def extract_with_review(
         最终 PaperData。
     """
     data = extract_data(text, model=model, tables=tables)
-    improved = review_extraction(data, text, model=model)
+    improved = review_extraction(data, text, model=model, tables=tables)
     if improved is not None:
         logger.info("已应用审查修正。")
         return improved
