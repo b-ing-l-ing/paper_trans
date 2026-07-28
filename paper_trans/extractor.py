@@ -291,7 +291,13 @@ def extract_multimodal(
     if start >= 0 and end > start:
         raw = raw[start : end + 1]
 
-    data = json.loads(raw)
-    return PaperData(**data)
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError as e:
+        raise RuntimeError(f"Gemini 返回无效 JSON: {e}\n原始响应: {raw[:500]}...")
+    try:
+        return PaperData(**data)
+    except Exception as e:
+        raise RuntimeError(f"Gemini 返回数据不符合 schema: {e}")
 
 

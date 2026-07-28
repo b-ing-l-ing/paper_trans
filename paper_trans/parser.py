@@ -66,8 +66,6 @@ def _extract_tables(doc) -> str:
 
     PyMuPDF 读 PDF 内部线条和文本坐标来定位表格，不受空单元格干扰。
     """
-    import re
-
     all_tables: list[str] = []
     table_count = 0
 

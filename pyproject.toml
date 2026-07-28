@@ -9,6 +9,7 @@ dependencies = [
     "google-genai>=2.14.0",
     "google-generativeai>=0.8.6",
     "instructor>=1.15.4",
+    "markdown-it-py>=4.2.0",
     "openai>=2.46.0",
     "pdfplumber>=0.11.10",
     "pillow>=12.3.0",

@@ -97,16 +97,3 @@ paper_trans/
 | `PAPER_TRANS_OUTPUT_DIR` | `./output` | 输出目录 |
 | `PAPER_TRANS_IMAGE_DIR` | `./output/images` | 图片目录 |
 
-## 路线图
-
-- [x] PDF 解析 + 图片提取
-- [x] LLM 结构化提取 + 自审
-- [x] 通用数据模型（不绑定特定学科）
-- [x] 网页爬取 + 登录态管理
-- [x] PDF 自动降级（摘要页 → 自动下载 PDF）
-- [x] 页眉/装饰图过滤（hash 去重）
-- [x] 多模态图表提取（Gemini）
-- [x] 结构化表格检测（坐标聚类，空单元格精确定位）
-- [x] 批量处理
-- [x] Web UI
-- [ ] 多模型支持（Claude, GPT 等）

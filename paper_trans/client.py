@@ -11,7 +11,7 @@ from .config import settings
 # DeepSeek（纯文本）
 # ---------------------------------------------------------------------------
 
-def create_client(model: str | None = None) -> instructor.Instructor:
+def create_client() -> instructor.Instructor:
     """创建 Instructor 包装的 DeepSeek 客户端。"""
     return instructor.patch(
         OpenAI(
