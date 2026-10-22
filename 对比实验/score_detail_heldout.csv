@@ -1,0 +1,96 @@
+﻿图,面板,柱子,真值,代码读值,代码面板,代码标签,归属对?,代码相对误差%,LLM读值,LLM相对误差%
+rm_fig3,a-5,7d,0.17,0.17,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱1,,0.0,0.16,5.88
+rm_fig3,a-5,28d,0.5,0.5,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱2,,0.0,0.5,0.0
+rm_fig3,a-10,3d,0.22,0.25,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱3,,13.64,0.23,4.55
+rm_fig3,a-10,7d,0.25,0.25,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱4,,0.0,0.27,8.0
+rm_fig3,a-10,28d,0.81,0.82,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱5,,1.23,0.8,1.23
+rm_fig3,a-15,3d,0.68,0.69,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱6,,1.47,0.7,2.94
+rm_fig3,a-15,7d,0.89,0.89,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱7,,0.0,0.9,1.12
+rm_fig3,a-15,28d,1.04,1.05,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱8,,0.96,1.05,0.96
+rm_fig3,a-20,3d,1.19,1.19,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱9,,0.0,1.2,0.84
+rm_fig3,a-20,7d,1.43,1.43,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱11,,0.0,1.45,1.4
+rm_fig3,a-20,28d,1.67,1.67,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱11,,0.0,1.68,0.6
+rm_fig3,a-25,3d,1.16,1.16,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱12,,0.0,1.18,1.72
+rm_fig3,a-25,7d,1.41,1.42,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱13,,0.71,1.4,0.71
+rm_fig3,a-25,28d,1.65,1.66,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱14,,0.61,1.66,0.61
+rm_fig3,a-30,3d,1.3,1.3,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱15,,0.0,1.3,0.0
+rm_fig3,a-30,7d,1.3,1.3,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱16,,0.0,1.3,0.0
+rm_fig3,a-30,28d,1.43,1.44,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱10,,0.7,1.45,1.4
+rm_fig3,b-45,3d,1.67,1.68,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱1,,0.6,1.68,0.6
+rm_fig3,b-45,7d,2.07,2.08,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱2,,0.48,2.08,0.48
+rm_fig3,b-45,28d,2.57,2.58,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱3,,0.39,2.57,0.0
+rm_fig3,b-50,3d,1.83,1.84,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱4,,0.55,1.85,1.09
+rm_fig3,b-50,7d,2.29,2.3,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱5,,0.44,2.3,0.44
+rm_fig3,b-50,28d,2.88,2.89,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱6,,0.35,2.92,1.39
+rm_fig3,b-55,3d,1.45,1.46,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱7,,0.69,1.47,1.38
+rm_fig3,b-55,7d,1.96,1.97,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱8,,0.51,1.98,1.02
+rm_fig3,b-55,28d,2.23,2.24,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱9,,0.45,2.25,0.9
+rm_fig3,b-60,3d,1.19,1.2,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱10,,0.84,1.2,0.84
+rm_fig3,b-60,7d,1.43,1.44,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱17,,0.7,1.45,1.4
+rm_fig3,b-60,28d,1.67,1.68,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱12,,0.6,1.68,0.6
+rm_fig3,b-65,3d,0.46,0.49,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱17,,6.52,0.48,4.35
+rm_fig3,b-65,7d,0.62,0.63,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱14,,1.61,0.63,1.61
+rm_fig3,b-65,28d,0.9,0.91,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱15,,1.11,0.9,0.0
+rm_fig3,b-70,3d,0.42,0.47,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱13,,11.9,0.42,0.0
+rm_fig3,b-70,7d,0.44,0.49,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱16,,11.36,0.48,9.09
+rm_fig3,b-70,28d,0.48,0.49,子图1 分组柱状图展示 AR 组样品在不同 w(CS) 掺量下 3 d、7 d、28 d 的抗压强度对比。,柱18,,2.08,0.5,4.17
+mat_fig2,a-M0,7d,35.1,35.06,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,M0,×,0.11,35.0,0.28
+mat_fig2,a-M0,14d,36.9,36.95,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,柱3,,0.14,37.0,0.27
+mat_fig2,a-M0,28d,41.3,,,,,,41.0,0.73
+mat_fig2,a-MC15,7d,32.2,32.15,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC15,×,0.16,32.0,0.62
+mat_fig2,a-MC15,14d,30.9,,,,,,31.5,1.94
+mat_fig2,a-MC15,28d,36.7,36.8,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,柱1,,0.27,36.0,1.91
+mat_fig2,a-MC30,7d,24.0,23.87,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC30,×,0.54,24.0,0.0
+mat_fig2,a-MC30,14d,26.7,,,,,,26.5,0.75
+mat_fig2,a-MC30,28d,29.2,,,,,,29.0,0.68
+mat_fig2,a-MC45,7d,20.3,20.1,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC45,×,0.99,20.0,1.48
+mat_fig2,a-MC45,14d,22.6,,,,,,23.0,1.77
+mat_fig2,a-MC45,28d,25.3,,,,,,25.0,1.19
+mat_fig2,a-MC60,7d,17.1,16.9,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC60,×,1.17,17.0,0.58
+mat_fig2,a-MC60,14d,19.1,,,,,,19.0,0.52
+mat_fig2,a-MC60,28d,19.2,,,,,,19.0,1.04
+mat_fig2,a-MCR0,7d,39.2,39.12,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MCR0,×,0.2,39.5,0.77
+mat_fig2,a-MCR0,14d,40.3,,,,,,40.0,0.74
+mat_fig2,a-MCR0,28d,40.3,,,,,,40.5,0.5
+mat_fig2,a-MC7.5R7.5,7d,39.7,39.56,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC7.5R7.5,×,0.35,40.0,0.76
+mat_fig2,a-MC7.5R7.5,14d,42.3,,,,,,43.0,1.65
+mat_fig2,a-MC7.5R7.5,28d,43.8,,,,,,43.5,0.68
+mat_fig2,a-MC15R15,7d,39.7,39.56,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC15R15,×,0.35,40.0,0.76
+mat_fig2,a-MC15R15,14d,43.84,44.21,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,柱2,,0.84,44.0,0.36
+mat_fig2,a-MC15R15,28d,43.8,,,,,,43.5,0.68
+mat_fig2,a-MC22.5R22.5,7d,38.2,38.11,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC22.5R22.5,×,0.24,38.0,0.52
+mat_fig2,a-MC22.5R22.5,14d,41.3,,,,,,41.0,0.73
+mat_fig2,a-MC22.5R22.5,28d,41.3,,,,,,41.0,0.73
+mat_fig2,a-MC30R30,7d,32.8,32.73,子图1 Grouped bar charts showing compressive strength (a) with three curing-time series and flexural strength (b) for different mixtures.,MC30R30,×,0.21,32.5,0.91
+mat_fig2,a-MC30R30,14d,36.0,,,,,,35.0,2.78
+mat_fig2,a-MC30R30,28d,36.7,,,,,,36.5,0.54
+mat_fig2,b-M0,7d,2.7,,,,,,2.7,0.0
+mat_fig2,b-M0,14d,2.7,,,,,,2.7,0.0
+mat_fig2,b-M0,28d,2.8,,,,,,2.8,0.0
+mat_fig2,b-MC15,7d,2.5,,,,,,2.5,0.0
+mat_fig2,b-MC15,14d,2.5,,,,,,2.5,0.0
+mat_fig2,b-MC15,28d,2.6,,,,,,2.6,0.0
+mat_fig2,b-MC30,7d,2.2,,,,,,2.2,0.0
+mat_fig2,b-MC30,14d,2.2,,,,,,2.2,0.0
+mat_fig2,b-MC30,28d,2.3,,,,,,2.3,0.0
+mat_fig2,b-MC45,7d,2.1,,,,,,2.1,0.0
+mat_fig2,b-MC45,14d,2.1,,,,,,2.1,0.0
+mat_fig2,b-MC45,28d,2.0,,,,,,1.9,5.0
+mat_fig2,b-MC60,7d,1.7,,,,,,1.7,0.0
+mat_fig2,b-MC60,14d,1.7,,,,,,1.7,0.0
+mat_fig2,b-MC60,28d,1.7,,,,,,1.7,0.0
+mat_fig2,b-MCR0,7d,2.6,,,,,,2.6,0.0
+mat_fig2,b-MCR0,14d,2.7,,,,,,2.7,0.0
+mat_fig2,b-MCR0,28d,2.8,,,,,,2.8,0.0
+mat_fig2,b-MC7.5R7.5,7d,2.5,,,,,,2.5,0.0
+mat_fig2,b-MC7.5R7.5,14d,2.8,,,,,,2.8,0.0
+mat_fig2,b-MC7.5R7.5,28d,2.9,,,,,,2.9,0.0
+mat_fig2,b-MC15R15,7d,2.6,,,,,,2.6,0.0
+mat_fig2,b-MC15R15,14d,2.7,,,,,,2.7,0.0
+mat_fig2,b-MC15R15,28d,2.8,,,,,,2.8,0.0
+mat_fig2,b-MC22.5R22.5,7d,2.3,,,,,,2.3,0.0
+mat_fig2,b-MC22.5R22.5,14d,2.6,,,,,,2.6,0.0
+mat_fig2,b-MC22.5R22.5,28d,2.6,,,,,,2.6,0.0
+mat_fig2,b-MC30R30,7d,1.9,,,,,,1.9,0.0
+mat_fig2,b-MC30R30,14d,2.0,,,,,,2.0,0.0
+mat_fig2,b-MC30R30,28d,2.1,,,,,,2.1,0.0

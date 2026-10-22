@@ -1,0 +1,97 @@
+figure,panel,panel_name,group,series,value,note
+rm_fig3,a,AR group sample,5,3d,0,原图只印标签「0」、无柱体（零高度柱）
+rm_fig3,a,AR group sample,5,7d,0.17,
+rm_fig3,a,AR group sample,5,28d,0.50,
+rm_fig3,a,AR group sample,10,3d,0.22,
+rm_fig3,a,AR group sample,10,7d,0.25,
+rm_fig3,a,AR group sample,10,28d,0.81,
+rm_fig3,a,AR group sample,15,3d,0.68,
+rm_fig3,a,AR group sample,15,7d,0.89,
+rm_fig3,a,AR group sample,15,28d,1.04,
+rm_fig3,a,AR group sample,20,3d,1.19,
+rm_fig3,a,AR group sample,20,7d,1.43,
+rm_fig3,a,AR group sample,20,28d,1.67,
+rm_fig3,a,AR group sample,25,3d,1.16,
+rm_fig3,a,AR group sample,25,7d,1.41,
+rm_fig3,a,AR group sample,25,28d,1.65,
+rm_fig3,a,AR group sample,30,3d,1.30,
+rm_fig3,a,AR group sample,30,7d,1.30,
+rm_fig3,a,AR group sample,30,28d,1.43,
+rm_fig3,b,BR group sample,45,3d,1.67,
+rm_fig3,b,BR group sample,45,7d,2.07,
+rm_fig3,b,BR group sample,45,28d,2.57,
+rm_fig3,b,BR group sample,50,3d,1.83,
+rm_fig3,b,BR group sample,50,7d,2.29,
+rm_fig3,b,BR group sample,50,28d,2.88,
+rm_fig3,b,BR group sample,55,3d,1.45,
+rm_fig3,b,BR group sample,55,7d,1.96,
+rm_fig3,b,BR group sample,55,28d,2.23,
+rm_fig3,b,BR group sample,60,3d,1.19,
+rm_fig3,b,BR group sample,60,7d,1.43,
+rm_fig3,b,BR group sample,60,28d,1.67,
+rm_fig3,b,BR group sample,65,3d,0.46,
+rm_fig3,b,BR group sample,65,7d,0.62,
+rm_fig3,b,BR group sample,65,28d,0.90,
+rm_fig3,b,BR group sample,70,3d,0.42,
+rm_fig3,b,BR group sample,70,7d,0.44,
+rm_fig3,b,BR group sample,70,28d,0.48,
+mat_fig2,a,Compressive strength,M0,7d,35.1,
+mat_fig2,a,Compressive strength,M0,14d,36.9,
+mat_fig2,a,Compressive strength,M0,28d,41.3,
+mat_fig2,a,Compressive strength,MC15,7d,32.2,
+mat_fig2,a,Compressive strength,MC15,14d,30.9,
+mat_fig2,a,Compressive strength,MC15,28d,36.7,
+mat_fig2,a,Compressive strength,MC30,7d,24,
+mat_fig2,a,Compressive strength,MC30,14d,26.7,
+mat_fig2,a,Compressive strength,MC30,28d,29.2,
+mat_fig2,a,Compressive strength,MC45,7d,20.3,
+mat_fig2,a,Compressive strength,MC45,14d,22.6,
+mat_fig2,a,Compressive strength,MC45,28d,25.3,
+mat_fig2,a,Compressive strength,MC60,7d,17.1,
+mat_fig2,a,Compressive strength,MC60,14d,19.1,
+mat_fig2,a,Compressive strength,MC60,28d,19.2,
+mat_fig2,a,Compressive strength,MCR0,7d,39.2,
+mat_fig2,a,Compressive strength,MCR0,14d,40.3,
+mat_fig2,a,Compressive strength,MCR0,28d,40.3,
+mat_fig2,a,Compressive strength,MC7.5R7.5,7d,39.7,读数不清，待填
+mat_fig2,a,Compressive strength,MC7.5R7.5,14d,42.3,读数不清，待填
+mat_fig2,a,Compressive strength,MC7.5R7.5,28d,43.8,读数不清，待填
+mat_fig2,a,Compressive strength,MC15R15,7d,39.7,读数不清，待填
+mat_fig2,a,Compressive strength,MC15R15,14d,43.84,读数不清，待填
+mat_fig2,a,Compressive strength,MC15R15,28d,43.8,读数不清，待填
+mat_fig2,a,Compressive strength,MC22.5R22.5,7d,38.2,读数不清，待填
+mat_fig2,a,Compressive strength,MC22.5R22.5,14d,41.3,读数不清，待填
+mat_fig2,a,Compressive strength,MC22.5R22.5,28d,41.3,读数不清，待填
+mat_fig2,a,Compressive strength,MC30R30,7d,32.8,读数不清，待填
+mat_fig2,a,Compressive strength,MC30R30,14d,36,读数不清，待填
+mat_fig2,a,Compressive strength,MC30R30,28d,36.7,读数不清，待填
+mat_fig2,b,Flexural strength,M0,7d,2.7,读数待核
+mat_fig2,b,Flexural strength,M0,14d,2.7,读数待核
+mat_fig2,b,Flexural strength,M0,28d,2.8,读数待核
+mat_fig2,b,Flexural strength,MC15,7d,2.5,读数待核
+mat_fig2,b,Flexural strength,MC15,14d,2.5,读数待核
+mat_fig2,b,Flexural strength,MC15,28d,2.6,读数待核
+mat_fig2,b,Flexural strength,MC30,7d,2.2,读数待核
+mat_fig2,b,Flexural strength,MC30,14d,2.2,读数待核
+mat_fig2,b,Flexural strength,MC30,28d,2.3,读数待核
+mat_fig2,b,Flexural strength,MC45,7d,2.1,读数待核
+mat_fig2,b,Flexural strength,MC45,14d,2.1,读数待核
+mat_fig2,b,Flexural strength,MC45,28d,2.0,读数待核
+mat_fig2,b,Flexural strength,MC60,7d,1.7,读数待核
+mat_fig2,b,Flexural strength,MC60,14d,1.7,读数待核
+mat_fig2,b,Flexural strength,MC60,28d,1.7,读数待核
+mat_fig2,b,Flexural strength,MCR0,7d,2.6,读数待核
+mat_fig2,b,Flexural strength,MCR0,14d,2.7,读数待核
+mat_fig2,b,Flexural strength,MCR0,28d,2.8,读数待核
+mat_fig2,b,Flexural strength,MC7.5R7.5,7d,2.5,读数待核
+mat_fig2,b,Flexural strength,MC7.5R7.5,14d,2.8,读数待核
+mat_fig2,b,Flexural strength,MC7.5R7.5,28d,2.9,读数待核
+mat_fig2,b,Flexural strength,MC15R15,7d,2.6,读数待核
+mat_fig2,b,Flexural strength,MC15R15,14d,2.7,读数待核
+mat_fig2,b,Flexural strength,MC15R15,28d,2.8,读数待核
+mat_fig2,b,Flexural strength,MC22.5R22.5,7d,2.3,读数待核
+mat_fig2,b,Flexural strength,MC22.5R22.5,14d,2.6,读数待核
+mat_fig2,b,Flexural strength,MC22.5R22.5,28d,2.6,读数待核
+mat_fig2,b,Flexural strength,MC30R30,7d,1.9,读数待核
+mat_fig2,b,Flexural strength,MC30R30,14d,2.0,读数待核
+mat_fig2,b,Flexural strength,MC30R30,28d,2.1,读数待核

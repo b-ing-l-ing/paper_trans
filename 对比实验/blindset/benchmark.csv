@@ -1,0 +1,88 @@
+figure,panel,panel_name,group,series,value,note
+24_fig3,a,RM-CF/BFA binary system,A1,3d,1.9,
+24_fig3,a,RM-CF/BFA binary system,A1,7d,1.2,
+24_fig3,a,RM-CF/BFA binary system,A1,28d,1.0,
+24_fig3,a,RM-CF/BFA binary system,A2,3d,2.1,
+24_fig3,a,RM-CF/BFA binary system,A2,7d,1.3,
+24_fig3,a,RM-CF/BFA binary system,A2,28d,1.1,
+24_fig3,a,RM-CF/BFA binary system,A3,3d,1.8,
+24_fig3,a,RM-CF/BFA binary system,A3,7d,0.9,
+24_fig3,a,RM-CF/BFA binary system,A3,28d,0.8,
+24_fig3,a,RM-CF/BFA binary system,A4,3d,1.5,
+24_fig3,a,RM-CF/BFA binary system,A4,7d,1.1,
+24_fig3,a,RM-CF/BFA binary system,A4,28d,1.0,
+24_fig3,a,RM-CF/BFA binary system,A5,3d,1.2,
+24_fig3,a,RM-CF/BFA binary system,A5,7d,1.0,
+24_fig3,a,RM-CF/BFA binary system,A5,28d,1.0,
+24_fig3,b,RM-CS binary system,B1,3d,7.3,
+24_fig3,b,RM-CS binary system,B1,7d,8.7,
+24_fig3,b,RM-CS binary system,B1,28d,10.4,
+24_fig3,b,RM-CS binary system,B2,3d,8.3,
+24_fig3,b,RM-CS binary system,B2,7d,8.5,
+24_fig3,b,RM-CS binary system,B2,28d,12.4,正文已证 28d=12.4
+24_fig3,b,RM-CS binary system,B3,3d,6.0,
+24_fig3,b,RM-CS binary system,B3,7d,7.9,
+24_fig3,b,RM-CS binary system,B3,28d,9.2,
+24_fig3,b,RM-CS binary system,B4,3d,6.2,
+24_fig3,b,RM-CS binary system,B4,7d,7.0,
+24_fig3,b,RM-CS binary system,B4,28d,9.2,
+24_fig3,b,RM-CS binary system,B5,3d,6.2,
+24_fig3,b,RM-CS binary system,B5,7d,7.3,
+24_fig3,b,RM-CS binary system,B5,28d,7.2,
+24_fig3,c,CFBFA-CS binary system,C1,3d,5.3,待填
+24_fig3,c,CFBFA-CS binary system,C1,7d,6.5,待填
+24_fig3,c,CFBFA-CS binary system,C1,28d,9.5,待填
+24_fig3,c,CFBFA-CS binary system,C2,3d,6.4,待填
+24_fig3,c,CFBFA-CS binary system,C2,7d,6.2,待填
+24_fig3,c,CFBFA-CS binary system,C2,28d,14.9,待填
+24_fig3,c,CFBFA-CS binary system,C3,3d,7.1,待填
+24_fig3,c,CFBFA-CS binary system,C3,7d,9.3,待填
+24_fig3,c,CFBFA-CS binary system,C3,28d,18.6,待填
+24_fig3,c,CFBFA-CS binary system,C4,3d,7.9,待填
+24_fig3,c,CFBFA-CS binary system,C4,7d,9.6,待填
+24_fig3,c,CFBFA-CS binary system,C4,28d,20.5,待填
+24_fig3,c,CFBFA-CS binary system,C5,3d,9.5,待填
+24_fig3,c,CFBFA-CS binary system,C5,7d,10.6,待填
+24_fig3,c,CFBFA-CS binary system,C5,28d,22.0,正文已证 28d=22.0
+24_fig3,d,RM-CFBFA-CS ternary system,D1,3d,8.2,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D1,7d,13.1,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D1,28d,23.2,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D2,3d,7.3,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D2,7d,13.6,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D2,28d,25.4,正文已证 28d=25.4
+24_fig3,d,RM-CFBFA-CS ternary system,D3,3d,8.3,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D3,7d,12.5,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D3,28d,22.5,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D4,3d,7.6,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D4,7d,12.9,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D4,28d,20.5,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D5,3d,7.0,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D5,7d,9.7,待填
+24_fig3,d,RM-CFBFA-CS ternary system,D5,28d,19.8,待填
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,4:6:1,3d,1.16,正文已验证
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,4:6:1,7d,4.99,正文已验证
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,4:6:1,28d,7.13,正文已验证
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,5:5:1,3d,0.95,
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,5:5:1,7d,3.67,
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,5:5:1,28d,5.93,
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,6:4:1,3d,0.74,
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,6:4:1,7d,2.79,
+yansuan_fig4,a,水泥-粉煤灰-水泥体系,6:4:1,28d,5.08,
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:0.5,3d,0.38,
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:0.5,7d,0.98,
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:0.5,28d,1.40,
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:0.9,3d,0.53,正文已验证
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:0.9,7d,1.29,正文已验证
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:0.9,28d,1.91,正文已验证
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:1.2,3d,0.42,
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:1.2,7d,0.62,
+yansuan_fig4,b,水泥-粉煤灰-脱硫石膏体系,4:6:1.2,28d,1.13,
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:0.8,3d,0.28,
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:0.8,7d,4.12,
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:0.8,28d,5.62,
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:1.0,3d,0.39,
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:1.0,7d,4.51,
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:1.0,28d,6.58,
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:1.2,3d,0.41,正文已验证
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:1.2,7d,5.99,正文已验证
+yansuan_fig4,c,水泥-粉煤灰-脱硫石膏-水泥体系,4:6:0.9:1.2,28d,7.69,正文已验证

@@ -56,6 +56,9 @@ def extract(
     version: bool = typer.Option(
         False, "--version", "-V", help="显示版本"
     ),
+    verify: bool = typer.Option(
+        False, "--verify", help="提取后运行验证管线（规则+溯源+交叉验证）"
+    ),
 ) -> None:
     """从单篇 PDF 论文中提取结构化数据。
 
@@ -97,6 +100,15 @@ def extract(
     typer.echo(f"   提取到: {len(data.tables)} 个表格, "
                f"{len(data.figures)} 个图表, "
                f"{len(data.numerical_data)} 个数值数据点")
+
+    if verify:
+        from .verify import verify_paper, save_report
+        typer.echo(" 运行验证管线...")
+        report = verify_paper(
+            text, data, pages_text=pages_text, tables=tables, model=model
+        )
+        typer.echo(f"   {report.summary}")
+        save_report(report, output_dir)
 
     typer.echo(" 渲染 Markdown...")
     md = render_markdown(data, str(pdf))

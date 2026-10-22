@@ -24,3 +24,13 @@ test_ext.py
 run_mm.py
 list_models.py
 jindutiao_orig.gif
+
+# 第三方参考源码（不是我们的代码，别入库）
+_thu_ref/
+
+# 临时扫描产物
+_scan_tmp/
+_testset_scan/
+
+# 实验层 vision 缓存（可重生成）
+**/.vision_cache/

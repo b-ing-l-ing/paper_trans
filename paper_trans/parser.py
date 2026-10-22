@@ -205,11 +205,28 @@ def parse_pdf(
     for page_num, page in enumerate(doc, 1):
         for img_idx, img in enumerate(page.get_images()):
             xref = img[0]
-            base_image = doc.extract_image(xref)
+            try:
+                base_image = doc.extract_image(xref)
+            except Exception:
+                # JPEG 带 alpha / 其他异常 → Pixmap 方式提取
+                logger.debug("extract_image 失败 xref=%d，尝试 pixmap 转换", xref)
+                try:
+                    pix = fitz.Pixmap(doc, xref)
+                    if pix.alpha:
+                        pix = fitz.Pixmap(pix, 0)  # 去掉 alpha
+                    img_bytes = pix.tobytes("png")
+                    ext = "png"
+                except Exception:
+                    logger.debug("pixmap 也失败 xref=%d，跳过", xref)
+                    continue
+                filename = f"{prefix}_p{page_num}_img{img_idx + 1}.png"
+                (out / filename).write_bytes(img_bytes)
+                pages_images[page_num].append(filename)
+                continue
             ext = base_image["ext"]
             img_bytes = base_image["image"]
 
-            # JPEG2000 → PNG 转换（科学论文常见格式）
+            # JPEG2000 → PNG 转换
             if ext in ("jpx", "jp2"):
                 pil_img = Image.open(BytesIO(img_bytes))
                 ext = "png"
@@ -219,7 +236,16 @@ def parse_pdf(
                 pil_img.save(out / filename, "PNG")
             else:
                 filename = f"{prefix}_p{page_num}_img{img_idx + 1}.{ext}"
-                (out / filename).write_bytes(img_bytes)
+                try:
+                    (out / filename).write_bytes(img_bytes)
+                except Exception:
+                    # JPEG 带 alpha 通道等异常 → 用 Pillow 转 PNG
+                    pil_img = Image.open(BytesIO(img_bytes))
+                    ext = "png"
+                    filename = f"{prefix}_p{page_num}_img{img_idx + 1}.{ext}"
+                    if pil_img.mode in ("RGBA", "CMYK", "P"):
+                        pil_img = pil_img.convert("RGB")
+                    pil_img.save(out / filename, "PNG")
 
             pages_images[page_num].append(filename)
 

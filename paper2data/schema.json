@@ -1,0 +1,517 @@
+{
+  "domain": "煤基多源固废低碳胶凝材料",
+  "version": "1.0",
+  "fields": [
+    {
+      "name": "OPC",
+      "label": "水泥",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "普通硅酸盐水泥掺量（质量分数）"
+    },
+    {
+      "name": "CG",
+      "label": "煤矸石",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "煤矸石掺量（质量分数）"
+    },
+    {
+      "name": "CFBFA",
+      "label": "循环流化床粉煤灰",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "循环流化床粉煤灰掺量（质量分数）"
+    },
+    {
+      "name": "FA",
+      "label": "粉煤灰",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "粉煤灰掺量（质量分数）"
+    },
+    {
+      "name": "RM",
+      "label": "赤泥",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "赤泥掺量（质量分数）"
+    },
+    {
+      "name": "CC",
+      "label": "生石灰",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "生石灰掺量（质量分数）"
+    },
+    {
+      "name": "GGBS",
+      "label": "高炉矿渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "矿渣占胶凝材料的质量分数"
+    },
+    {
+      "name": "SS",
+      "label": "钢渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "钢渣占胶凝材料的质量分数"
+    },
+    {
+      "name": "SF",
+      "label": "硅灰",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "硅灰掺量（质量分数）"
+    },
+    {
+      "name": "PG",
+      "label": "磷石膏",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "磷石膏占胶凝材料的质量分数"
+    },
+    {
+      "name": "DG",
+      "label": "脱硫石膏",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "脱硫石膏掺量（质量分数）"
+    },
+    {
+      "name": "CCS",
+      "label": "燃煤矿渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "燃煤矿渣掺量（质量分数）"
+    },
+    {
+      "name": "CS",
+      "label": "电石渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "电石渣掺量（质量分数）"
+    },
+    {
+      "name": "CF",
+      "label": "甲酸钙",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "甲酸钙掺量（质量分数）"
+    },
+    {
+      "name": "CMK",
+      "label": "偏高岭土",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "偏高岭土掺量（质量分数）"
+    },
+    {
+      "name": "EMR",
+      "label": "电解锰渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "电解锰渣掺量（质量分数）"
+    },
+    {
+      "name": "SR",
+      "label": "苏打渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "苏打渣掺量（质量分数）"
+    },
+    {
+      "name": "SO",
+      "label": "土壤",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "土壤掺量（质量分数）"
+    },
+    {
+      "name": "CGS",
+      "label": "煤气化渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "煤气化渣掺量（质量分数）"
+    },
+    {
+      "name": "PS",
+      "label": "磷渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "磷渣掺量（质量分数）"
+    },
+    {
+      "name": "RS",
+      "label": "精炼渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "精炼渣掺量（质量分数）"
+    },
+    {
+      "name": "Ca/Si",
+      "label": "钙硅摩尔比",
+      "category": "成分",
+      "unit": null,
+      "type": "continuous",
+      "computed": true,
+      "desc": "混合原料中 Ca/Si 元素摩尔比，由各原料成分加权计算",
+      "compute": {
+        "kind": "molar_ratio",
+        "num": "CaO",
+        "den": "SiO2"
+      }
+    },
+    {
+      "name": "Si/Al",
+      "label": "硅铝摩尔比",
+      "category": "成分",
+      "unit": null,
+      "type": "continuous",
+      "computed": true,
+      "desc": "混合原料中 Si/Al 元素摩尔比，由各原料成分加权计算",
+      "compute": {
+        "kind": "molar_ratio",
+        "num": "SiO2",
+        "den": "Al2O3",
+        "den_factor": 2
+      }
+    },
+    {
+      "name": "Na/Al",
+      "label": "钠铝摩尔比",
+      "category": "成分",
+      "unit": null,
+      "type": "continuous",
+      "computed": true,
+      "desc": "混合原料中 Na/Al 元素摩尔比，由各原料成分加权计算",
+      "compute": {
+        "kind": "molar_ratio",
+        "num": "Na2O",
+        "den": "Al2O3",
+        "num_factor": 2,
+        "den_factor": 2
+      }
+    },
+    {
+      "name": "MgO",
+      "label": "氧化镁总含量",
+      "category": "成分",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": true,
+      "desc": "混合原料中 MgO 总含量（质量分数），由各原料成分加权计算",
+      "compute": {
+        "kind": "weighted_oxide",
+        "oxide": "MgO"
+      }
+    },
+    {
+      "name": "Fe2O3",
+      "label": "三氧化二铁总含量",
+      "category": "成分",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": true,
+      "desc": "混合原料中 Fe2O3 总含量（质量分数），由各原料成分加权计算",
+      "compute": {
+        "kind": "weighted_oxide",
+        "oxide": "Fe2O3"
+      }
+    },
+    {
+      "name": "K2O",
+      "label": "氧化钾总含量",
+      "category": "成分",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": true,
+      "desc": "混合原料中 K2O 总含量（质量分数），由各原料成分加权计算",
+      "compute": {
+        "kind": "weighted_oxide",
+        "oxide": "K2O"
+      }
+    },
+    {
+      "name": "SO3",
+      "label": "三氧化硫总含量",
+      "category": "成分",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": true,
+      "desc": "混合原料中 SO3 总含量（质量分数），由各原料成分加权计算",
+      "compute": {
+        "kind": "weighted_oxide",
+        "oxide": "SO3"
+      }
+    },
+    {
+      "name": "NaOH",
+      "label": "氢氧化钠",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "外掺氢氧化钠，相对胶凝材料的质量分数"
+    },
+    {
+      "name": "Na2O",
+      "label": "氧化钠",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "氧化钠掺量（质量分数）"
+    },
+    {
+      "name": "CaO",
+      "label": "氧化钙",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "氧化钙掺量（质量分数）"
+    },
+    {
+      "name": "Ca(OH)2",
+      "label": "氢氧化钙",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "氢氧化钙掺量（质量分数）"
+    },
+    {
+      "name": "Na2SO4",
+      "label": "硫酸钠",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "硫酸钠掺量（质量分数）"
+    },
+    {
+      "name": "MZS",
+      "label": "木质素",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "木质素掺量（质量分数）[单位待确认]"
+    },
+    {
+      "name": "WRA",
+      "label": "减水剂",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "减水剂掺量（质量分数）"
+    },
+    {
+      "name": "Re",
+      "label": "缓凝剂",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "缓凝剂掺量（质量分数）"
+    },
+    {
+      "name": "De",
+      "label": "消泡剂",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "消泡剂掺量（质量分数）"
+    },
+    {
+      "name": "MNa2SiO3",
+      "label": "硅酸钠模数",
+      "category": "工艺",
+      "unit": null,
+      "type": "continuous",
+      "computed": false,
+      "desc": "硅酸钠（水玻璃）模数，SiO2/Na2O 摩尔比 [单位待确认]"
+    },
+    {
+      "name": "AA",
+      "label": "碱激发剂含量",
+      "category": "工艺",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "碱激发剂含量（质量分数）[单位待确认]"
+    },
+    {
+      "name": "T",
+      "label": "原料煅烧温度",
+      "category": "工艺",
+      "unit": "℃",
+      "type": "continuous",
+      "computed": false,
+      "desc": "原料煅烧温度"
+    },
+    {
+      "name": "WB",
+      "label": "水胶比",
+      "category": "工艺",
+      "unit": null,
+      "type": "continuous",
+      "computed": false,
+      "desc": "水胶比（水/胶凝材料质量比）"
+    },
+    {
+      "name": "SB",
+      "label": "胶砂比",
+      "category": "工艺",
+      "unit": null,
+      "type": "continuous",
+      "computed": false,
+      "desc": "胶砂比（胶凝材料/砂质量比）"
+    },
+    {
+      "name": "C-3d",
+      "label": "3天抗压强度",
+      "category": "性能",
+      "unit": "MPa",
+      "type": "continuous",
+      "computed": false,
+      "desc": "3天抗压强度，达标标准 ≥15 MPa"
+    },
+    {
+      "name": "C-7d",
+      "label": "7天抗压强度",
+      "category": "性能",
+      "unit": "MPa",
+      "type": "continuous",
+      "computed": false,
+      "desc": "7天抗压强度，达标标准 ≥30 MPa"
+    },
+    {
+      "name": "C-28d",
+      "label": "28天抗压强度",
+      "category": "性能",
+      "unit": "MPa",
+      "type": "continuous",
+      "computed": false,
+      "desc": "28天抗压强度，达标标准 ≥42.5 MPa"
+    },
+    {
+      "name": "Z-3d",
+      "label": "3天抗折强度",
+      "category": "性能",
+      "unit": "MPa",
+      "type": "continuous",
+      "computed": false,
+      "desc": "3天抗折强度，达标标准 ≥4 MPa"
+    },
+    {
+      "name": "Z-7d",
+      "label": "7天抗折强度",
+      "category": "性能",
+      "unit": "MPa",
+      "type": "continuous",
+      "computed": false,
+      "desc": "7天抗折强度，达标标准 ≥6 MPa"
+    },
+    {
+      "name": "Z-28d",
+      "label": "28天抗折强度",
+      "category": "性能",
+      "unit": "MPa",
+      "type": "continuous",
+      "computed": false,
+      "desc": "28天抗折强度，达标标准 ≥7.5 MPa"
+    },
+    {
+      "name": "FL",
+      "label": "流动性",
+      "category": "性能",
+      "unit": "mm",
+      "type": "continuous",
+      "computed": false,
+      "desc": "流动性，达标标准 ≥150 mm"
+    },
+    {
+      "name": "IT",
+      "label": "初凝时间",
+      "category": "性能",
+      "unit": "min",
+      "type": "continuous",
+      "computed": false,
+      "desc": "初凝时间，达标标准 ≥40 min"
+    },
+    {
+      "name": "TT",
+      "label": "终凝时间",
+      "category": "性能",
+      "unit": "min",
+      "type": "continuous",
+      "computed": false,
+      "desc": "终凝时间，达标标准 ≤600 min"
+    },
+    {
+      "name": "WP",
+      "label": "透水性",
+      "category": "性能",
+      "unit": "mm/s",
+      "type": "continuous",
+      "computed": false,
+      "desc": "透水性，达标标准 ≥0.5 mm/s"
+    },
+    {
+      "name": "SC",
+      "label": "软化系数",
+      "category": "性能",
+      "unit": null,
+      "type": "continuous",
+      "computed": false,
+      "desc": "软化系数，达标标准 ≥0.75"
+    }
+  ]
+}

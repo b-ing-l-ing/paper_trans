@@ -1,0 +1,65 @@
+﻿图,面板,标签,值,来源
+syn_L1_single,柱状图展示了 A、B、C、D、E,A,12.16,反算
+syn_L1_single,柱状图展示了 A、B、C、D、E,B,15.99,反算
+syn_L1_single,柱状图展示了 A、B、C、D、E,C,17.22,反算
+syn_L1_single,柱状图展示了 A、B、C、D、E,D,14.87,反算
+syn_L1_single,柱状图展示了 A、B、C、D、E,E,18.95,反算
+syn_L2_two,分组柱状图，比较 M0、M15、,M0,25.5,反算
+syn_L2_two,分组柱状图，比较 M0、M15、,M15,24.24,反算
+syn_L2_two,分组柱状图，比较 M0、M15、,M30,31.92,反算
+syn_L2_two,分组柱状图，比较 M0、M15、,M45,34.94,反算
+syn_L2_two,分组柱状图，比较 M0、M15、,M60,38.08,反算
+syn_L2_two,分组柱状图，比较 M0、M15、,M75,22.35,反算
+syn_L2_two,系列2（#ED7D31）:,M0,40.22,反算
+syn_L2_two,系列2（#ED7D31）:,M15,24.11,反算
+syn_L2_two,系列2（#ED7D31）:,M30,27.13,反算
+syn_L2_two,系列2（#ED7D31）:,M45,34.81,反算
+syn_L2_two,系列2（#ED7D31）:,M60,44.5,反算
+syn_L2_two,系列2（#ED7D31）:,M75,45.63,反算
+syn_L3_tight,分组柱状图，展示 C1–C6 六,C1,8.09,反算
+syn_L3_tight,分组柱状图，展示 C1–C6 六,C2,8.28,反算
+syn_L3_tight,分组柱状图，展示 C1–C6 六,C3,8.84,反算
+syn_L3_tight,分组柱状图，展示 C1–C6 六,C4,6.97,反算
+syn_L3_tight,分组柱状图，展示 C1–C6 六,C5,10.65,反算
+syn_L3_tight,分组柱状图，展示 C1–C6 六,C6,11.34,反算
+syn_L3_tight,系列2（#C44E52）:,C1,8.65,反算
+syn_L3_tight,系列2（#C44E52）:,C2,14.83,反算
+syn_L3_tight,系列2（#C44E52）:,C3,13.21,反算
+syn_L3_tight,系列2（#C44E52）:,C4,13.14,反算
+syn_L3_tight,系列2（#C44E52）:,C5,13.58,反算
+syn_L3_tight,系列2（#C44E52）:,C6,9.59,反算
+syn_L3_tight,系列3（#8172B3）:,C1,21.45,反算
+syn_L3_tight,系列3（#8172B3）:,C2,22.26,反算
+syn_L3_tight,系列3（#8172B3）:,C3,24.0,反算
+syn_L3_tight,系列3（#8172B3）:,C4,17.45,反算
+syn_L3_tight,系列3（#8172B3）:,C5,12.96,反算
+syn_L3_tight,系列3（#8172B3）:,C6,23.69,反算
+syn_L4_hatch,分组柱状图展示G1-G6在3d、,G1,7.63,反算
+syn_L4_hatch,分组柱状图展示G1-G6在3d、,G2,16.47,反算
+syn_L4_hatch,分组柱状图展示G1-G6在3d、,G3,11.28,反算
+syn_L4_hatch,分组柱状图展示G1-G6在3d、,G4,15.83,反算
+syn_L4_hatch,分组柱状图展示G1-G6在3d、,G5,7.95,反算
+syn_L4_hatch,分组柱状图展示G1-G6在3d、,G6,7.82,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱1,6.43,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱2,17.5,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱3,19.78,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱4,6.21,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱5,19.42,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱6,24.58,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱7,7.39,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱8,18.53,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱9,24.95,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱10,10.93,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱11,13.15,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱12,21.11,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱13,7.24,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱14,12.85,反算
+syn_L5_hollow,分组柱状图展示 H1-H5 在 ,柱15,21.92,反算
+syn_L6_dense,纵轴: Value / MPa（,P0,22.0,约(落回)
+syn_L6_dense,纵轴: Value / MPa（,P10,33.0,约(落回)
+syn_L6_dense,纵轴: Value / MPa（,P20,38.0,约(落回)
+syn_L6_dense,纵轴: Value / MPa（,P30,41.0,约(落回)
+syn_L6_dense,纵轴: Value / MPa（,P40,30.0,约(落回)
+syn_L6_dense,纵轴: Value / MPa（,P50,30.0,约(落回)
+syn_L6_dense,纵轴: Value / MPa（,P60,46.0,约(落回)
+syn_L6_dense,纵轴: Value / MPa（,P70,37.0,约(落回)

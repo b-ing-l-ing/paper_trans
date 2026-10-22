@@ -63,7 +63,7 @@ def build_review_prompt(data_json: str, text: str, text_limit: int = 15000) -> s
         审查 prompt 字符串。
     """
     return f"""\
-Review this extraction for completeness and accuracy.
+Review this extraction for correctness, not just completeness.
 
 ## Paper excerpt (first {text_limit} chars):
 {text[:text_limit]}
@@ -71,13 +71,14 @@ Review this extraction for completeness and accuracy.
 ## Current extraction:
 {data_json}
 
-## Review checklist:
-1. Are there any tables that were missed or incompletely captured?
-2. Are there figures mentioned in the text that are not described?
-3. Are there numerical values (measurements, statistics, metrics) that were missed?
-4. Are any extracted values incorrect?
-5. Are methods summarized at the right level (high-level, not every detail)?
-6. Are field_tags appropriate for this paper's domain?
+## Review checklist（逐项核查，不要只给整体印象）:
 
-If the extraction is complete and accurate, respond with "OK".
+1. **数值自洽**：拿正文报告的增量、比例、倍数，和表格里的基准值/目标值相减或相除重算一遍。若正文说「A 比 B 提高 X」，检查表格里 A-B 是否真的等于 X，不符则记为错误。
+2. **跨位置冲突**：同一指标（如同一试件的 7d 强度）在摘要、正文、不同表格里出现多个取值时逐一比对，取值不同则记为冲突。
+3. **结论与数据对得上**：正文的文字结论（如「某组最高/最低」）是否与表格/图的数据一致。
+4. **数值抄写**：抽出的数值是否与原文逐字一致（含单位、小数点、±）。
+5. **表格完整性**：每个表格的列数、空单元格是否与表头对齐，有无漏行。
+6. **漏抽**：正文提到的图、表、数值、方法是否都覆盖。
+
+If the extraction is correct and complete, respond with "OK".
 If there are issues, output the CORRECTED complete JSON with all fixes applied."""

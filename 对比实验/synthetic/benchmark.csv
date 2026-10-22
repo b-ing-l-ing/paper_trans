@@ -1,0 +1,101 @@
+﻿figure,panel,panel_name,group,series,value,note
+syn_L1_single,p,syn_L1_single,A,28d,12.21,单系列、间隙大、刻度稀疏 —— 基线。柱子灰色 → 路由应走几何法
+syn_L1_single,p,syn_L1_single,B,28d,16.02,单系列、间隙大、刻度稀疏 —— 基线。柱子灰色 → 路由应走几何法
+syn_L1_single,p,syn_L1_single,C,28d,17.26,单系列、间隙大、刻度稀疏 —— 基线。柱子灰色 → 路由应走几何法
+syn_L1_single,p,syn_L1_single,D,28d,14.96,单系列、间隙大、刻度稀疏 —— 基线。柱子灰色 → 路由应走几何法
+syn_L1_single,p,syn_L1_single,E,28d,19.01,单系列、间隙大、刻度稀疏 —— 基线。柱子灰色 → 路由应走几何法
+syn_L2_two,p,syn_L2_two,M0,7d,25.65,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M0,28d,40.31,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M15,7d,24.39,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M15,28d,24.32,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M30,7d,32.1,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M30,28d,27.29,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M45,7d,35.13,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M45,28d,34.97,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M60,7d,38.17,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M60,28d,44.68,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M75,7d,22.53,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L2_two,p,syn_L2_two,M75,28d,45.77,2 系列、组间有间隙、带误差棒 —— 基线。两种彩色 → 路由该走逐色法
+syn_L3_tight,p,syn_L3_tight,C1,3d,8.17,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C1,7d,8.75,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C1,28d,21.51,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C2,3d,8.36,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C2,7d,14.93,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C2,28d,22.29,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C3,3d,8.9,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C3,7d,13.27,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C3,28d,24.06,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C4,3d,7.03,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C4,7d,13.22,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C4,28d,17.5,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C5,3d,10.74,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C5,7d,13.66,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C5,28d,13.05,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C6,3d,11.44,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C6,7d,9.65,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L3_tight,p,syn_L3_tight,C6,28d,23.78,组内**完全无间隙**（柱宽=1）—— 几何法死区：柱身连成一整块，只能靠柱顶跳变拆
+syn_L4_hatch,p,syn_L4_hatch,G1,3d,8.24,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G1,7d,7.75,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G1,28d,13.94,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G2,3d,7.19,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G2,7d,16.6,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G2,28d,23.32,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G3,3d,7.83,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G3,7d,11.41,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G3,28d,21.48,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G4,3d,10.35,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G4,7d,15.96,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G4,28d,15.74,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G5,3d,10.89,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G5,7d,8.1,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G5,28d,11.22,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G6,3d,4.13,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G6,7d,7.93,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L4_hatch,p,syn_L4_hatch,G6,28d,16.07,**斜纹填充** —— 逐色法死区：颜色掩码只剩线条、fill 过不了门槛
+syn_L5_hollow,p,syn_L5_hollow,H1,7d,6.3,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H1,14d,17.41,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H1,28d,19.67,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H2,7d,6.1,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H2,14d,19.32,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H2,28d,24.53,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H3,7d,7.3,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H3,14d,18.42,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H3,28d,24.85,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H4,7d,10.82,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H4,14d,13.02,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H4,28d,21.04,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H5,7d,7.14,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H5,14d,12.73,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L5_hollow,p,syn_L5_hollow,H5,28d,21.86,**空心柱**（只有描边）—— 颜色法死区：柱身=背景色，颜色掩码只有一圈边
+syn_L6_dense,p,syn_L6_dense,P0,7d,22.31,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P0,14d,33.46,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P0,28d,38.4,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P0,56d,41.62,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P10,7d,30.94,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P10,14d,29.69,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P10,28d,46.63,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P10,56d,37.49,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P20,7d,18.12,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P20,14d,27.78,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P20,28d,42.73,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P20,56d,35.45,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P30,7d,15.59,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P30,14d,26.64,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P30,28d,24.28,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P30,56d,37.71,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P40,7d,24.47,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P40,14d,30.07,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P40,28d,32.27,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P40,56d,26.59,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P50,7d,19.63,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P50,14d,38.57,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P50,28d,28.72,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P50,56d,45.55,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P60,7d,16.23,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P60,14d,31.42,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P60,28d,47.52,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P60,56d,42.48,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P70,7d,23.19,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P70,14d,26.24,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P70,28d,35.07,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）
+syn_L6_dense,p,syn_L6_dense,P70,56d,24.01,32 根 + 小尺寸 + 6 档刻度 —— 综合压力（对照 heldout 的 mat_fig2 那种塌方）

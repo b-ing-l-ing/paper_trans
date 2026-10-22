@@ -1,0 +1,22 @@
+figure,panel,panel_name,group,series,value,note
+cnd_fig2,a,Compressive strength (binary system),RC10,3d,39.7,柱高清=98.50pt
+cnd_fig2,a,Compressive strength (binary system),RC10,7d,49.7,柱高清=123.30pt
+cnd_fig2,a,Compressive strength (binary system),RC10,28d,56.8,正文锚点 56.8
+cnd_fig2,a,Compressive strength (binary system),RC20,3d,36.5,柱高清=90.55pt
+cnd_fig2,a,Compressive strength (binary system),RC20,7d,45.4,柱高清=112.65pt
+cnd_fig2,a,Compressive strength (binary system),RC20,28d,49.1,柱高清=121.83pt
+cnd_fig2,a,Compressive strength (binary system),RC30,3d,34.4,柱高清=85.33pt
+cnd_fig2,a,Compressive strength (binary system),RC30,7d,41.8,柱高清=103.68pt
+cnd_fig2,a,Compressive strength (binary system),RC30,28d,47.4,正文锚点 47.4
+cnd_fig2,a,Compressive strength (binary system),RC40,3d,30.3,柱高清=75.18pt
+cnd_fig2,a,Compressive strength (binary system),RC40,7d,35.0,柱高清=86.85pt
+cnd_fig2,a,Compressive strength (binary system),RC40,28d,39.3,柱高清=97.49pt
+cnd_fig2,a,Compressive strength (binary system),RC50,3d,28.2,柱高清=69.96pt
+cnd_fig2,a,Compressive strength (binary system),RC50,7d,30.4,柱高清=75.44pt
+cnd_fig2,a,Compressive strength (binary system),RC50,28d,35.9,柱高清=89.07pt
+cnd_fig2,a,Compressive strength (binary system),RC60,3d,21.2,柱高清=52.58pt
+cnd_fig2,a,Compressive strength (binary system),RC60,7d,21.8,柱高清=54.09pt
+cnd_fig2,a,Compressive strength (binary system),RC60,28d,26.6,柱高清=66.01pt
+cnd_fig2,a,Compressive strength (binary system),RC70,3d,19.4,柱高清=48.12pt
+cnd_fig2,a,Compressive strength (binary system),RC70,7d,19.6,柱高清=48.62pt
+cnd_fig2,a,Compressive strength (binary system),RC70,28d,21.9,正文锚点 21.9
