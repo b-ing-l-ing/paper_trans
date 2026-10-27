@@ -40,3 +40,19 @@ def save_csv(df: pd.DataFrame, path: str | Path) -> str:
     path.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(path, index=False, encoding="utf-8-sig")
     return str(path)
+
+
+# 溯源 CSV 的列顺序（一行 = 一个「记录 × 字段」的溯源结果）
+PROVENANCE_COLUMNS = [
+    "record_index", "field", "field_label", "value", "page", "evidence",
+    "status", "source", "match_kind", "found", "note",
+]
+
+
+def save_provenance_csv(rows: list[dict[str, Any]], path: str | Path) -> str:
+    """把溯源结果存 CSV（UTF-8-SIG，Excel 直接打开）。"""
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df = pd.DataFrame(rows, columns=PROVENANCE_COLUMNS)
+    df.to_csv(path, index=False, encoding="utf-8-sig")
+    return str(path)

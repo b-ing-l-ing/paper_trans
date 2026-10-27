@@ -58,6 +58,11 @@ def _split_number_unit(raw: str) -> tuple[float | None, str | None]:
     return value, unit or None
 
 
+# 公开别名：溯源层（verify/provenance.py）要和归一化**用同一套「数值+单位」解析**，
+# 否则两边对 "3.2 ± 0.1 MPa" 的理解会不一致
+split_number_unit = _split_number_unit
+
+
 def convert(value: float, from_unit: str | None, to_unit: str | None) -> float:
     """把 value 从 from_unit 换算到 to_unit。
 
