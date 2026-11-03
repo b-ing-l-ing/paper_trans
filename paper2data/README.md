@@ -1,5 +1,8 @@
 # paper2data
 
+> 完整项目文档（数据集划分、评测脚本、当前状态）见根目录 **`README.md`** 和 `PAPER2DATA_STATUS.md`。
+> 本文件只保留包级说明。
+
 从科学论文 PDF 抽取**机器学习训练用的表格数据集**。每行一条试验,列由字段库(schema)决定,支持 LLM 动态补充模板外字段。
 
 与主包 `paper_trans`(文档式总结抽取)不同,本包的产物是**表格**——最终导出 CSV,可直接喂给 pandas / CTGAN。
@@ -101,9 +104,10 @@ LLM 发现模板外字段时,自动补进 `new_fields`,带完整元信息(中文
 
 从论文图表里提取数据(柱状图/谱图/显微图),转成文本融入全文,让 LLM 统一抽取:
 
-- **子图分割**:vision 定位一张图里的多个子图,逐个裁剪处理;
+- **子图分割**:代码找长直线轴框切块(`detect_plot_frames`)——vision 分块会按格子均分;
 - **柱顶印数字** → vision OCR 读数值(精确);
-- **柱顶没印数** → 代码标定 + 反算(检测刻度线 → 标定轴 → 基线检测柱子 → 反算);
+- **柱顶没印数** → **默认也交给 vision 读值**;设 `PAPER2DATA_FIGURE_VALUES=code`
+  才走代码标定 + 反算(该路径待重设计,斜纹/粘连/刻度相位会崩);
 - **谱图/显微图** → vision 定性描述(物相、形貌)。
 
 多模态用的模型是 `deepseek-v4-flash-vision-exp`(配环境变量 `PAPER2DATA_VISION_MODEL`)。
@@ -124,13 +128,16 @@ issues = check_records(records, schema)
 
 后续补:provenance(溯源)、crosscheck(交叉验证)。
 
-## 评估(eval.py)
+## 评估
 
-对照人工测试集(benchmark)和 LLM 抽取结果,算字段级准确率,像 ML 的 accuracy 一样直观:
+评测已迁到 **`scripts/evaluate.py`**(新口径:真值定基准、原料/工艺两层行匹配、
+性能不参与匹配、行级/字段级/覆盖率分开报):
 
 ```bash
-python -m paper2data.eval paper2data/benchmarks/固化剂_benchmark.csv output.csv
+python scripts/evaluate.py data/benchmarks/dev02.csv output/dev02.csv
 ```
+
+⚠️ 旧 `paper2data/eval.py` 和 `benchmarks/*.csv`(早期 LLM 生成、未审核)**已弃用**。
 
 ## 目录结构
 

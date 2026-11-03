@@ -1,0 +1,229 @@
+{
+  "created": "2026-10-28",
+  "ground_truth": "data/多元固废数据搜集.xlsx（Sheet1，按「参考文献」列匹配）",
+  "name": "开发集",
+  "usage": "日常开发、快速验证功能，可反复跑",
+  "papers": [
+    {
+      "id": "dev01",
+      "pdf": "data/开发集/dev01_三元全固体废物水泥材料的开发及其在沉积物废物稳定工程中的应用.pdf",
+      "ref": "Development of ternary all-solid-waste cementitious materials and utilization in engineering sediment waste stabilization",
+      "doi": "10.1016/j.jrmge.2025.05.024",
+      "rows": 55,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "GGBS",
+      "materials": {
+        "GGBS": 55,
+        "PG": 20,
+        "DG": 15,
+        "CS": 55,
+        "EMR": 20
+      }
+    },
+    {
+      "id": "dev02",
+      "pdf": "data/开发集/dev02_磷石膏、粒状高炉渣、电石渣等固体废物衍生活化材料，用于可持续海洋建设.pdf",
+      "ref": "Novel solid-waste-derived activation materials from phosphogypsum, granulated blast-furnace slag, and calcium carbide slag for sustainable marine construction",
+      "doi": "10.1016/j.cscm.2025.e05096",
+      "rows": 19,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "GGBS",
+      "materials": {
+        "OPC": 11,
+        "GGBS": 19,
+        "DG": 19,
+        "CS": 11
+      }
+    },
+    {
+      "id": "dev03",
+      "pdf": "data/开发集/dev03_用于水泥浆回填的全固体废物环境结合剂开发.pdf",
+      "ref": "Development of full-solid waste environmentally binder for cemented paste backfill",
+      "doi": "10.1016/j.conbuildmat.2024.137689",
+      "rows": 16,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "GGBS",
+      "materials": {
+        "GGBS": 16,
+        "PG": 16,
+        "CS": 12
+      }
+    },
+    {
+      "id": "dev04",
+      "pdf": "data/开发集/dev04_煤矸石基多固废地聚物砂浆配合比及力学性能优化.pdf",
+      "ref": "Optimization of mix proportions and mechanical properties of coal gangue-based multi-solid-waste geopolymer mortars",
+      "doi": "10.1016/j.cscm.2025.e05134",
+      "rows": 49,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "CG",
+      "materials": {
+        "CG": 49,
+        "FA": 49,
+        "GGBS": 49,
+        "DG": 49
+      }
+    },
+    {
+      "id": "dev05",
+      "pdf": "data/开发集/dev05_由聚合的CGP-OSA-GGBS三元固体废弃物构成的地高分子的性质与机制.pdf",
+      "ref": "Properties and mechanisms of geopolymers constructed from polymerized CGP-OSA-GGBS ternary-based solid wastes",
+      "doi": "10.1016/j.conbuildmat.2024.138710",
+      "rows": 15,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "CG",
+      "materials": {
+        "CG": 15,
+        "GGBS": 15,
+        "OSA": 15
+      },
+      "benchmark_note": "论文实际 48 组（A/B/C 各 16，正交设计），xlsx 只录 15 行。真值覆盖率 31% → 不纳入评分基线，仅用于开发/看多抽。"
+    },
+    {
+      "id": "dev06",
+      "pdf": "data/开发集/dev06_基于煤炭的固体废物通过盐碱活化处理水泥材料：可作性、机械性能与环境评估.pdf",
+      "ref": "Coal-based solid waste cementitious materials via salt-alkali activation: Workability, mechanical performance and environmental assessment",
+      "doi": "10.1016/j.conbuildmat.2026.145601",
+      "rows": 18,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "CG",
+      "materials": {
+        "CG": 18,
+        "GGBS": 18,
+        "DG": 9,
+        "CS": 18
+      }
+    },
+    {
+      "id": "dev07",
+      "pdf": "data/开发集/dev07_复合胶凝体系中循环流化床粉煤灰与赤泥的协同水化机理及性能.pdf",
+      "ref": "Synergistic hydration mechanism and performance of circulating fluidized bed fly ash and red mud in composite cementitious systems",
+      "doi": "10.1016/j.conbuildmat.2025.143648",
+      "rows": 12,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "OPC",
+      "materials": {
+        "OPC": 12,
+        "CFBFA": 10,
+        "RM": 10
+      }
+    },
+    {
+      "id": "dev08",
+      "pdf": "data/开发集/dev08_氢氧化钙驱动的多组分固体废物基水泥质材料系统：水化机制与微观结构.pdf",
+      "ref": "Calcium hydroxide-driven multi-component solid waste-based cementitious material systems: Hydration mechanisms and microstructure",
+      "doi": "10.1016/j.cscm.2026.e06556",
+      "rows": 10,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "OPC",
+      "materials": {
+        "OPC": 10,
+        "FA": 9,
+        "GGBS": 9
+      }
+    },
+    {
+      "id": "dev09",
+      "pdf": "data/开发集/dev09_以废玻璃粉、偏高岭土和石灰石填料为补充胶凝材料的水泥浆的导热系数.pdf",
+      "ref": "Thermal conductivity of cement paste containing waste glass powder, metakaolin and limestone filler as supplementary cementitious materia",
+      "doi": "10.1016/j.jclepro.2020.125018",
+      "rows": 15,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "OPC",
+      "materials": {
+        "OPC": 15,
+        "LF": 5
+      }
+    },
+    {
+      "id": "dev10",
+      "pdf": "data/开发集/dev10_多固废协同赤泥基胶凝材料的制备及性能评价.pdf",
+      "ref": "Preparation and performance assessment of multi-solid waste synergistic red mud-based cementitious materials",
+      "doi": "10.1016/j.conbuildmat.2025.141222",
+      "rows": 35,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "RM",
+      "materials": {
+        "RM": 35,
+        "GGBS": 35,
+        "DG": 26,
+        "CS": 35,
+        "SF": 26
+      }
+    },
+    {
+      "id": "dev11",
+      "pdf": "data/开发集/dev11_非煅烧拜耳赤泥磷石膏胶凝粘结剂的性能及机理研究.pdf",
+      "ref": "Investigation on properties and mechanism of non-calcined Bayer red mud-phosphogypsum cementitious binder",
+      "doi": "10.1016/j.jclepro.2022.134661",
+      "rows": 17,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "RM",
+      "materials": {
+        "FA": 4,
+        "RM": 17,
+        "GGBS": 17,
+        "PG": 12,
+        "DG": 5,
+        "SF": 1
+      }
+    },
+    {
+      "id": "dev12",
+      "pdf": "data/开发集/dev12_一种基于赤泥和电石渣的固体废弃胶凝材料的协同活化机理及长期性能.pdf",
+      "ref": "Synergistic activation mechanism and long-term properties of a solid waste cementitious materials based on red mud and calcium carbide slag",
+      "doi": "10.1016/j.conbuildmat.2024.137313",
+      "rows": 16,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "FA",
+      "materials": {
+        "FA": 16,
+        "RM": 16,
+        "GGBS": 12,
+        "CS": 16
+      }
+    },
+    {
+      "id": "dev13",
+      "pdf": "data/开发集/dev13_基于工业固体废物的环保地聚合物灌浆胶结材料的制备、表征及流变分析.pdf",
+      "ref": "Preparation, characterization, and rheological analysis of eco-friendly geopolymer grouting cementitious materials based on industrial solid wastes",
+      "doi": "10.1016/j.jobe.2023.107451",
+      "rows": 20,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "CFBFA",
+      "materials": {
+        "CFBFA": 20,
+        "DG": 19,
+        "CS": 20
+      }
+    },
+    {
+      "id": "dev14",
+      "pdf": "data/开发集/dev14_多种煤基固体废物的胶结回填体协同制备及其性能研究.pdf",
+      "ref": "Synergistic preparation of cemented backfill from multiple coal-based solid wastes and investigation of its properties",
+      "doi": "10.1016/j.mtcomm.2025.113025",
+      "rows": 30,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "OPC",
+      "materials": {
+        "OPC": 30,
+        "CG": 30,
+        "DG": 30
+      }
+    }
+  ]
+}

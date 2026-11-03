@@ -1,10 +1,14 @@
 """多模态图数据提取 —— vision 分类/OCR + 代码反算的集成入口。
 
-路由逻辑（能力路由，避开 vision 估读几何的软肋）：
-① vision 分析图（类型 + 有无数字标签 + 系列颜色）
-② 柱顶/扇区印了数字 → vision OCR 读数值（100% 准）
-③ 无数字标签的数据图 → 代码标定 + 反算（精确，后续接刻度检测）
-④ 谱图/显微图 → vision 定性描述
+路由逻辑：
+① **切块永远走代码**（`detect_plot_frames` 长直线找轴框）——vision 分块实测
+   会按格子均分，把表格切进来、面板张冠李戴，这块不让模型碰。
+② vision 分析图（类型 + 有无数字标签 + 系列颜色）
+③ 有数字标签的柱顶/扇区 → vision OCR 读数值
+④ 无数字标签的柱状图 → **默认也走 vision 读值**；只有设
+   `PAPER2DATA_FIGURE_VALUES=code` 才走代码标定 + 反算（对照实验用）
+   理由：代码读柱状图还不完善（斜纹/粘连/刻度相位），待重设计。
+⑤ 谱图/显微图 → vision 定性描述
 """
 
 from __future__ import annotations
@@ -27,7 +31,9 @@ logger = logging.getLogger(__name__)
 
 
 def _vision_call(image_bytes: bytes, mime_type: str, prompt: str) -> str:
-    client = OpenAI(api_key=settings.deepseek_api_key, base_url=settings.deepseek_base_url)
+    # 读图走**独立配置**（PAPER2DATA_VISION_*）；没设就回退 DeepSeek。
+    # 这样可以把文本抽取和读图分到不同平台，也方便交叉验证换模型。
+    client = OpenAI(api_key=settings.vision_api_key, base_url=settings.vision_base_url)
     img_b64 = base64.b64encode(image_bytes).decode()
     response = client.chat.completions.create(
         model=settings.vision_model,
@@ -212,7 +218,9 @@ def _single_figure_to_text(
     if ftype in ("other", "table"):
         return ""
     # 无标签柱状图 → 代码反算（避免 vision 估读几何）
-    if ftype == "bar" and not analysis.get("has_labels", True):
+    # **默认关**（PAPER2DATA_FIGURE_VALUES=code 才走这条）：代码读柱状图待重设计，
+    # 现阶段数值交给下面的 vision 分支。
+    if ftype == "bar" and not analysis.get("has_labels", True) and _values_via_code():
         colors = analysis.get("colors") or []
         if colors:
             series = extract_unlabeled_bar_multi(img_path, colors, plot_bounds=plot_bounds)
@@ -235,14 +243,21 @@ def _single_figure_to_text(
             logger.warning("图 %s 代码反算失败（无可信系列），落回 vision 估读", figure_label)
 
     img_bytes = Path(img_path).read_bytes()
+    # ⚠️ **必须按系列输出**：一维 values 装不下「3d/7d/28d 三组柱」，
+    # vision 只能丢两组或混在一起（dev02 实测：C-3d/C-7d 各漏 8 个值）。
+    # 多个系列（不同颜色/图例/分组）→ 每个系列单独一组 values。
     prompt = (
         "分析这张图，提取数据。返回 JSON（只输出 JSON）：\n"
         '{"type": "bar/pie/line/scatter/spectrum/microscopy/other", '
-        '"y_label": "纵轴标签(含义+单位)", "x_labels": ["横轴类别1", ...], '
-        '"values": [数值1, ...], "description": "一句话描述"}\n'
-        "柱顶/扇区/数据点上直接印了数值，就精确读出填进 values；"
-        "没印数值但能看出数值，就估读填（标注约）；"
-        "谱图/显微图 type 填 spectrum/microscopy，y_label/x_labels/values 填空。"
+        '"y_label": "纵轴标签(含义+单位)", '
+        '"categories": ["横轴类别1", ...], '
+        '"series": [{"label": "系列名（如 3d/7d/28d 或图例文字）", '
+        '"values": [数值1, ...]}, ...], "description": "一句话描述"}\n'
+        "**图里有多个系列（不同颜色 / 图例 / 分组）时必须分开列出，"
+        "每个系列一组 values，绝不能合并成一个数组或只报其中一组。**\n"
+        "柱顶/扇区/数据点上直接印了数值，就精确读出；"
+        "没印数值但能看出数值，就估读（标注约）；"
+        "谱图/显微图 type 填 spectrum/microscopy，categories/series 填空。"
     )
     raw = _vision_call(img_bytes, _mime(img_path), prompt)
     try:
@@ -253,7 +268,11 @@ def _single_figure_to_text(
 
 
 def _to_text(data: dict, figure_label: str) -> str:
-    """把图数据字典转成一段文本。"""
+    """把图数据字典转成一段文本。
+
+    按**系列**输出（`[3d] / [7d] / [28d]` 分组），
+    兼容旧格式：只有扁平 `values` 时当成单系列。
+    """
     ftype = data.get("type", "other")
     prefix = f"{figure_label} " if figure_label else ""
 
@@ -261,15 +280,26 @@ def _to_text(data: dict, figure_label: str) -> str:
         desc = data.get("description", "").strip()
         return f"{prefix}{desc}" if desc else ""
 
-    y_label = data.get("y_label", "").strip()
-    x_labels = data.get("x_labels", []) or []
-    values = data.get("values", []) or []
+    y_label = (data.get("y_label") or "").strip()
+    categories = data.get("categories") or data.get("x_labels") or []
+    series = data.get("series") or []
+    if not series and data.get("values"):
+        series = [{"label": "", "values": data["values"]}]
+
     lines = []
     head = f"{prefix}纵轴: {y_label}".strip() if y_label else prefix.strip()
     if head:
         lines.append(head)
-    for x, v in zip(x_labels, values):
-        lines.append(f"- {x}: {v}")
+    for s in series:
+        label = (s.get("label") or "").strip()
+        vals = s.get("values") or []
+        if not vals:
+            continue
+        if label:
+            lines.append(f"[{label}]")
+        for i, v in enumerate(vals):
+            x = categories[i] if i < len(categories) else f"柱{i + 1}"
+            lines.append(f"- {x}: {v}")
     return "\n".join(lines) if lines else ""
 
 
@@ -520,6 +550,20 @@ def _extract_gray_series(
     return [{"color": "gray", "values": labeled, "confidence": confidence}]
 
 
+def _values_via_code() -> bool:
+    """柱状图数值是否走**代码反算**（标定 + 像素测量）。
+
+    ⚠️ **2026-10-28 起默认关闭（`vision`）**：柱状图这套代码读图还不完善
+    （斜纹柱 / 组内粘连 / 刻度相位都会崩），先让 vision 读值，等重设计后再开。
+
+    **切块不受这个开关影响**——切块永远走代码（`detect_plot_frames`），
+    因为 vision 分块实测会按格子均分，把表格切进来、面板张冠李戴。
+
+    设 `PAPER2DATA_FIGURE_VALUES=code` 打开，用于「代码 vs vision」对照实验。
+    """
+    return os.getenv("PAPER2DATA_FIGURE_VALUES", "vision").lower() == "code"
+
+
 def _geometric_fallback_enabled() -> bool:
     """结果驱动降级的开关。**默认关**——正式输出保持原样，方便对照与回滚。
 
@@ -557,6 +601,12 @@ def _maybe_geometric_fallback(
     触发条件刻意不写成「图是不是灰的」——那个判据把「用哪把工具」和「图长什么样」绑死
     了，两边各有死区。这里用**实际结果**触发，再用**标定证据强度**把门。
     """
+    if not _values_via_code():
+        logger.info(
+            "图 %s：代码读柱状图已关闭（PAPER2DATA_FIGURE_VALUES=vision）→ 落回 vision",
+            img_path,
+        )
+        return []
     if not _geometric_fallback_enabled():
         logger.info("图 %s：逐色法无结果（%s），几何兜底开关关闭 → 落回 vision", img_path, why)
         return []

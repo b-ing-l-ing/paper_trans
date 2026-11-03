@@ -20,10 +20,11 @@ def to_dataframe(
 ) -> pd.DataFrame:
     """把 records 转成 DataFrame。
 
-    列顺序：schema 字段（按字段库顺序）→ 新字段（按出现顺序追加）。
+    列顺序：schema.output（标准数据集列，如样式例的 40 列）
+          → 字段库其余字段 → 新字段（按出现顺序追加）。
     缺失值由 pandas 自动置为 NaN。
     """
-    columns = schema.field_names()
+    columns = schema.output_names()
     if new_fields:
         for nf in new_fields:
             if nf.name not in columns:

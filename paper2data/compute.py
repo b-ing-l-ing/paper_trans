@@ -63,6 +63,26 @@ def _split_number_unit(raw: str) -> tuple[float | None, str | None]:
 split_number_unit = _split_number_unit
 
 
+# LLM 不总吐 JSON null，也常吐 "N/A" / "未提及" 这种字符串。这些**都是空**，
+# 输出层必须统一成 None（→ CSV 空格子）：一列里只要混进一个字符串，
+# pandas 读回来整列就是 object，下游机器学习直接崩。
+# 溯源层复用同一份定义，保证两层对「空」的理解一致。
+EMPTY_VALUES = frozenset({
+    "", "-", "—", "–", "n/a", "na", "none", "null", "nan",
+    "未提及", "未报道", "无",
+})
+
+
+def is_empty_value(raw: Any) -> bool:
+    """这个「值」是不是等于没填。
+
+    注意 `0` / `"0"` **不是**空——配比里 0 是合法值（该原料不掺）。
+    """
+    if raw is None:
+        return True
+    return str(raw).strip().lower() in EMPTY_VALUES
+
+
 def convert(value: float, from_unit: str | None, to_unit: str | None) -> float:
     """把 value 从 from_unit 换算到 to_unit。
 
@@ -87,6 +107,7 @@ def normalize_record(
     """把一行 records 归一化。
 
     规则：
+    - 空值（None / "N/A" / "未提及" …）统一成 None → 输出成 CSV 空格子。
     - 数值字段：拆出数值 + 单位，换算到字段库 / 新字段声明的目标单位。
     - 分类字段 / 解析不出数值的：原样保留。
     - 传入 new_fields 时，新字段也按其声明的 unit/type 归一化。
@@ -97,6 +118,9 @@ def normalize_record(
             field_map.setdefault(nf.name, nf)
     out: dict[str, Any] = {}
     for key, raw in record.items():
+        if is_empty_value(raw):
+            out[key] = None
+            continue
         f = field_map.get(key)
         if f is None or f.type in ("categorical", "discrete"):
             out[key] = raw

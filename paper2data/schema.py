@@ -58,10 +58,22 @@ class FieldSpec(BaseModel):
 
 
 class Schema(BaseModel):
-    """一份字段库。domain 标识领域，fields 是字段列表。"""
+    """一份字段库。domain 标识领域，fields 是字段列表。
+
+    `fields` 是**字段库**（可以比最终数据集宽，多出来的字段帮 LLM 识别别名）；
+    `output` 是**最终数据集要输出的列顺序**（对应 `输出样式例.xlsx` 的 40 列）。
+    两者分开：往字段库里加字段不会污染输出，改输出不必删字段。
+    """
 
     domain: str = Field(description="领域名，如 '煤基多源固废低碳胶凝材料'")
     version: str = Field(default="1.0", description="字段库版本")
+    output: Optional[list[str]] = Field(
+        default=None,
+        description=(
+            "输出列顺序（标准数据集列）。为 None 时输出全部字段；"
+            "列名必须都存在于 fields 中"
+        ),
+    )
     fields: list[FieldSpec] = Field(default_factory=list, description="字段列表")
 
     # ------------------------------------------------------------------
@@ -71,6 +83,27 @@ class Schema(BaseModel):
     def field_names(self) -> list[str]:
         """所有字段名。"""
         return [f.name for f in self.fields]
+
+    def output_names(self) -> list[str]:
+        """最终数据集要输出的列名。
+
+        `output` 定义了 → 它排在最前（对应 `输出样式例.xlsx` 的 40 列顺序），
+        字段库里其余的字段按原顺序追加——
+        **不丢数据**，但标准列永远落在前 40 位，下游按位置取列不会乱。
+
+        `output` 未定义 → 退回全部字段（老 schema 行为不变）。
+        定义了但列名在字段库里找不到 → 直接报错：静默输出空列比报错危险得多。
+        """
+        if not self.output:
+            return self.field_names()
+        known = self.field_names()
+        known_set = set(known)
+        missing = [n for n in self.output if n not in known_set]
+        if missing:
+            raise ValueError(f"schema.output 里有字段不在字段库中：{missing}")
+        head = list(self.output)
+        head_set = set(head)
+        return head + [n for n in known if n not in head_set]
 
     def computed_names(self) -> list[str]:
         """计算字段名（LLM 跳过，代码硬算）。"""

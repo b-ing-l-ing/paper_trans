@@ -8,6 +8,8 @@
 import argparse
 import json
 import logging
+import os
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from .parser import parse_pdf
@@ -31,6 +33,7 @@ def extract_pdf(
     output_path: str | None = None,
     composition_path: str | None = None,
     use_figures: bool = True,
+    debug: bool = False,
 ) -> str:
     """单篇论文 → CSV。返回 CSV 路径。
 
@@ -38,6 +41,10 @@ def extract_pdf(
       · 只关心正文/表格里印出来的数；
       · 调试 / 验证流程本身（比如溯源），不想每次都为图付调用。
     溯源仍然对正文和表格生效；图里的值会显示成「查无出处」（它们确实不在正文里）。
+
+    `debug=True` 时把中间产物落盘，方便定位问题：
+      · `<输出名>.figures.txt` —— 每张图提取出的文本（有序 + 页码）
+      · `<输出名>.tables.json`  —— 坐标聚类检测到的表格结构
     """
     pdf = Path(pdf_path)
     schema = Schema.load(schema_path)
@@ -45,44 +52,76 @@ def extract_pdf(
     if composition_path:
         composition = json.loads(Path(composition_path).read_text(encoding="utf-8"))
 
+    # 输出路径先算出来：主 CSV、溯源 CSV、debug 产物都放一起
+    output = Path(output_path) if output_path else pdf.with_suffix(".csv")
+
+    import time
+    _t0 = time.time()
     print(f"解析 PDF: {pdf.name}")
     text, pages_text, pages_images = parse_pdf(pdf, image_dir=settings.image_dir)
+    _t_parse = time.time() - _t0
 
     # 接入坐标聚类表格（无边框表），与 PyMuPDF 的表格互补
+    _t1 = time.time()
     detected = detect_tables(str(pdf))
+    _t_table = time.time() - _t1
     if detected:
         text += "\n\n" + _format_detected_tables(detected)
         print(f"  坐标聚类检测到 {len(detected)} 个无边框表格")
+    if debug:
+        dbg_tables = output.with_name(output.stem + ".tables.json")
+        dbg_tables.write_text(
+            json.dumps(detected, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        print(f"  [debug] 表格结构已写：{dbg_tables.name}（{len(detected)} 个）")
 
     # 图数据转文本（多模态），附加到全文，让 LLM 统一抽取
     # **保留页码映射**：溯源要靠它把「图里读出来的值」归到正确的页。
     # 喂给 LLM 的文本内容一字不变（下面 join 的是 f["text"]）。
     figure_texts: list[dict] = []
+    _t2 = time.time()
     if not use_figures:
         print("  跳过图提取（--no-figures）：不调用 vision")
     else:
-        for pn in sorted(pages_images):
-            for fname in pages_images[pn]:
-                img_path = Path(settings.image_dir) / fname
-                try:
-                    ft = figure_to_text(str(img_path), figure_label=f"图(第{pn}页)")
-                    if ft:
-                        figure_texts.append({"page": pn, "filename": fname, "text": ft})
-                except Exception as e:
-                    logger.warning("图 %s 提取失败: %s", fname, e)
+        def _one(pn: int, fname: str) -> dict | None:
+            img_path = Path(settings.image_dir) / fname
+            try:
+                ft = figure_to_text(str(img_path), figure_label=f"图(第{pn}页)")
+                return {"page": pn, "filename": fname, "text": ft} if ft else None
+            except Exception as e:
+                logger.warning("图 %s 提取失败: %s", fname, e)
+                return None
+
+        tasks = [(pn, fname) for pn in sorted(pages_images) for fname in pages_images[pn]]
+        # 图之间并发（实测 4 并发无 429，耗时约 ÷2）。线程池保序，结果按页/文件名顺序回来。
+        workers = max(1, int(os.getenv("PAPER2DATA_FIGURE_WORKERS", "4")))
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            for out in ex.map(lambda t: _one(*t), tasks):
+                if out:
+                    figure_texts.append(out)
         if figure_texts:
             text += "\n\n## 图表数据(从图提取)\n" + "\n\n".join(f["text"] for f in figure_texts)
             print(f"  从 {len(figure_texts)} 张图提取到图表数据")
+    _t_fig = time.time() - _t2
+    if debug:
+        dbg_fig = output.with_name(output.stem + ".figures.txt")
+        blocks = [
+            f"### 第{f['page']}页  {f['filename']}\n{f['text']}"
+            for f in figure_texts
+        ]
+        dbg_fig.write_text("\n\n".join(blocks) or "（没有提取到图文本）", encoding="utf-8")
+        print(f"  [debug] 图文本已写：{dbg_fig.name}（{len(figure_texts)} 张）")
 
     print("LLM 抽取中...")
+    _t3 = time.time()
     result = extract_dataset(text, schema)
+    _t_extract = time.time() - _t3
     print(f"  抽到 {len(result.records)} 条试验, {len(result.new_fields)} 个新字段")
+    print(f"  [计时] 解析 {_t_parse:.1f}s / 表格 {_t_table:.1f}s / "
+          f"图 {_t_fig:.1f}s / 抽取 {_t_extract:.1f}s")
     if result.new_fields:
         for nf in result.new_fields:
             print(f"    · 新字段 {nf.name} ({nf.label})")
-
-    # 输出路径先算出来：主 CSV 与溯源 CSV 放一起
-    output = Path(output_path) if output_path else pdf.with_suffix(".csv")
 
     # 溯源（零 LLM）：把每个抽出来的值回溯到原文「页码 + 证据句」。
     # **必须在 normalize 之前**——那之后就只剩 4000.0，"4000 kPa" 的原始串没了。
@@ -174,6 +213,11 @@ def main() -> None:
         "--no-figures", action="store_true",
         help="跳过图提取（不调用 vision，快很多）。溯源仍对正文和表格生效",
     )
+    parser.add_argument(
+        "--debug", action="store_true",
+        help="落盘中间产物：<输出名>.figures.txt（每张图的提取文本）"
+             " + <输出名>.tables.json（表格检测结构）",
+    )
     args = parser.parse_args()
 
     if not Path(args.pdf).exists():
@@ -181,7 +225,7 @@ def main() -> None:
 
     try:
         extract_pdf(args.pdf, args.schema, args.output, args.composition,
-                    use_figures=not args.no_figures)
+                    use_figures=not args.no_figures, debug=args.debug)
     except Exception as e:
         logger.error("处理失败：%s", e)
         raise SystemExit(1)

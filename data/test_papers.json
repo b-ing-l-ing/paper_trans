@@ -1,0 +1,244 @@
+{
+  "created": "2026-10-28",
+  "ground_truth": "data/多元固废数据搜集.xlsx（Sheet1，按「参考文献」列匹配）",
+  "name": "测试集",
+  "frozen": true,
+  "usage": "评分与发现问题。冻结后不许针对本批加规则再用同一批证明有效",
+  "papers": [
+    {
+      "id": "test01",
+      "pdf": "data/测试集/test01_关于磷石膏基可持续水泥材料的机械性能、水合机制及碳排放的研究.pdf",
+      "ref": "Study on mechanical properties, hydration mechanism and carbon emission of phosphogypsum-based sustainable cementitious materials",
+      "doi": "10.1016/j.scp.2025.102016",
+      "rows": 30,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "GGBS",
+      "materials": {
+        "GGBS": 30,
+        "PG": 30
+      }
+    },
+    {
+      "id": "test02",
+      "pdf": "data/测试集/test02_优化煤气化炉渣利用：固体废物水泥材料中高炉炉渣替换的预测建模与水化机制.pdf",
+      "ref": "Optimizing coal gasification slag utilization: Predictive modeling and hydration mechanism of blast furnace slag replacement in solid waste cementitious materials",
+      "doi": "10.1016/j.cej.2025.167935",
+      "rows": 25,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "GGBS",
+      "materials": {
+        "GGBS": 25,
+        "SS": 25,
+        "DG": 25,
+        "CGS": 25
+      }
+    },
+    {
+      "id": "test03",
+      "pdf": "data/测试集/test03_探索碱和硫酸盐含量对石膏激活炉渣胶结物系统的影响：水合产物与流变性质.pdf",
+      "ref": "Exploring the effects of alkali and sulfate content on the gypsum-activated slag cementitious system: Hydration products and rheological properties",
+      "doi": "10.1016/j.conbuildmat.2025.143229",
+      "rows": 11,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "GGBS",
+      "materials": {
+        "GGBS": 11,
+        "DG": 11,
+        "CS": 11
+      }
+    },
+    {
+      "id": "test04",
+      "pdf": "data/测试集/test04_电解锰渣、钢渣、高炉渣协同制备胶凝材料的力学性能及环境特性.pdf",
+      "ref": "Mechanical properties and environmental characteristics of the synergistic preparation of cementitious materials using electrolytic manganese residue, steel slag, and blast furnace slag",
+      "doi": "10.1016/j.conbuildmat.2023.134480",
+      "rows": 11,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "GGBS",
+      "materials": {
+        "GGBS": 11,
+        "SS": 11,
+        "EMR": 11
+      }
+    },
+    {
+      "id": "test05",
+      "pdf": "data/测试集/test05_煤矸石-矿渣-粉煤灰地聚物注浆材料的制备.pdf",
+      "ref": "Preparation of coal gangue-slag-fly ash geopolymer grouting materials",
+      "doi": "10.1016/j.conbuildmat.2022.126997",
+      "rows": 27,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "CG",
+      "materials": {
+        "CG": 27,
+        "FA": 27,
+        "GGBS": 27,
+        "DG": 27
+      }
+    },
+    {
+      "id": "test06",
+      "pdf": "data/测试集/test06_碱活化钢渣-煤矸石胶凝材料：强度、水化和重金属固定化.pdf",
+      "ref": "Alkali-activated steel slag-coal gangue cementitious materials: Strength, hydration, and heavy metal immobilization",
+      "doi": "10.1016/j.cscm.2025.e05120",
+      "rows": 21,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "CG",
+      "materials": {
+        "CG": 21,
+        "SS": 20
+      }
+    },
+    {
+      "id": "test07",
+      "pdf": "data/测试集/test07_硅灰在活化赤泥和磷石膏共混复合胶凝材料中的作用.pdf",
+      "ref": "The role of silica fume in activating composite cementitious materials blended with red mud and phosphogypsum",
+      "doi": "10.1016/j.conbuildmat.2025.142806",
+      "rows": 16,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "OPC",
+      "materials": {
+        "OPC": 16,
+        "RM": 16,
+        "PG": 6,
+        "SF": 8
+      }
+    },
+    {
+      "id": "test08",
+      "pdf": "data/测试集/test08_赤泥、脱硫石膏和粉煤灰在胶凝材料中的协同作用：力学性能和显微组织.pdf",
+      "ref": "Synergistic effect of red mud, desulfurized gypsum and fly ash in cementitious materials: Mechanical performances and microstructure",
+      "doi": "10.1016/j.conbuildmat.2023.133302",
+      "rows": 14,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "OPC",
+      "materials": {
+        "OPC": 14,
+        "FA": 14,
+        "RM": 14,
+        "DG": 10
+      }
+    },
+    {
+      "id": "test09",
+      "pdf": "data/测试集/test09_钙硅比和硅铝比值对固体废物基水泥材料的水合机制和性能的协同效应.pdf",
+      "ref": "Synergistic effects of Ca/Si and Si/Al ratios on the hydration mechanisms and performance of solid waste-based cementitious materials",
+      "doi": "10.1016/j.conbuildmat.2026.145804",
+      "rows": 10,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "OPC",
+      "materials": {
+        "OPC": 10,
+        "CG": 6,
+        "FA": 10,
+        "GGBS": 6,
+        "SF": 6
+      }
+    },
+    {
+      "id": "test10",
+      "pdf": "data/测试集/test10_碳化物炉渣激活红泥 高炉矿渣全废渣灌浆材料的早期水化及流变行为.pdf",
+      "ref": "Early hydration and rheological behavior of carbide slag-activated red mud/GGBS Full waste grouting material",
+      "doi": "10.1016/j.jobe.2025.113324",
+      "rows": 22,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "RM",
+      "materials": {
+        "RM": 22,
+        "GGBS": 22,
+        "CS": 22
+      }
+    },
+    {
+      "id": "test11",
+      "pdf": "data/测试集/test11_磷石膏和碳化物渣协同作用在赤泥土稳定中的作用：力学性能、环境影响和微观尺度机理.pdf",
+      "ref": "Phosphogypsum and carbide slag synergy for red mud soil stabilization: Mechanical performance, environmental impacts, and micro-scale mechanisms",
+      "doi": "10.1016/j.envres.2025.122696",
+      "rows": 15,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "RM",
+      "materials": {
+        "RM": 15,
+        "PG": 15,
+        "CS": 15
+      }
+    },
+    {
+      "id": "test12",
+      "pdf": "data/测试集/test12_不同CaSi和AlS比暴露的赤泥-石膏衍生活化剂复合胶凝材料的相演化及力学性能.pdf",
+      "ref": "Phase evolution and mechanical performance of red mud-gypsum waste derived activator composite cementitious materials exposed to various Ca/ Si and Al/S ratios",
+      "doi": "10.1016/j.conbuildmat.2023.134807",
+      "rows": 10,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "RM",
+      "materials": {
+        "RM": 10,
+        "GGBS": 10,
+        "DG": 5,
+        "CS": 10
+      }
+    },
+    {
+      "id": "test13",
+      "pdf": "data/测试集/test13_煤气化粗渣基的石灰胶结物设计：性能、微观结构及水化机制.pdf",
+      "ref": "Design of coal gasification coarse slag based quinary cementitious material: Performance, microstructure and hydration mechanism",
+      "doi": "10.1016/j.jobe.2026.116276",
+      "rows": 12,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "RM",
+      "materials": {
+        "RM": 12,
+        "GGBS": 12,
+        "PG": 12,
+        "CS": 12,
+        "CGS": 12
+      }
+    },
+    {
+      "id": "test14",
+      "pdf": "data/测试集/test14_碳化钙炉渣基全固体废物胶结材料在低碱性环境中：水化过程与强度增强机制.pdf",
+      "ref": "Calcium carbide slag-based all-solid-waste cementitious materials in low-alkaline environments: Hydration process and strength enhancement mechanisms",
+      "doi": "10.1016/j.conbuildmat.2026.146335",
+      "rows": 23,
+      "has_c28": true,
+      "has_fl": false,
+      "main_material": "CS",
+      "materials": {
+        "FA": 22,
+        "GGBS": 22,
+        "CS": 23
+      }
+    },
+    {
+      "id": "test15",
+      "pdf": "data/测试集/test15_近零碳多工业废弃物的多尺度特性及磷稳定机制，磷尾矿作为填充材料的回收利用.pdf",
+      "ref": "Multi-scale characteristics and phosphorus stabilization mechanisms of near-zero carbon multi-industrial waste cementitious material recycling phosphorus tailings as filling materia",
+      "doi": "10.1016/j.jobe.2025.114845",
+      "rows": 10,
+      "has_c28": true,
+      "has_fl": true,
+      "main_material": "PT",
+      "materials": {
+        "OPC": 5,
+        "FA": 5,
+        "GGBS": 5,
+        "PG": 5,
+        "CS": 5,
+        "PT": 10
+      }
+    }
+  ]
+}

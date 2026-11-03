@@ -20,6 +20,7 @@ dependencies = [
     "pymupdf>=1.28.0",
     "pymupdf-layout>=1.28.0",
     "python-dotenv>=1.2.2",
+    "scipy>=1.17.0",
     "typer>=0.15.0",
 ]
 

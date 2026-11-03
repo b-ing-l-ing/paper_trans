@@ -35,7 +35,11 @@ _testset_scan/
 # 实验层 vision 缓存（可重生成）
 **/.vision_cache/
 
-# 数据集：210 篇 PDF + 2.3G 压缩包，不入库；只留体积小的对应表
+# 数据集：210 篇 PDF + 2.3G 压缩包，不入库；只留体积小的对应表与集划分
 data/*
 !data/paper_ref_map.csv
 !data/paper_ref_map_llm.csv
+!data/dev_papers.json
+!data/test_papers.json
+# benchmark 是真值，必须入库（PDF 仍在 data/开发集、data/测试集 里，不入库）
+!data/benchmarks/

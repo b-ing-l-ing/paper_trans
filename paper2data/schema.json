@@ -192,6 +192,90 @@
       "desc": "精炼渣掺量（质量分数）"
     },
     {
+      "name": "LF",
+      "label": "石灰石粉",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "石灰石粉/石灰石填料掺量（质量分数）。磨细石灰石粉作补充胶凝材料或填料；与 SP（机制砂石粉）不同",
+      "aliases": [
+        "limestone filler",
+        "limestone powder",
+        "石灰石填料",
+        "石灰石粉"
+      ]
+    },
+    {
+      "name": "OSA",
+      "label": "油页岩灰",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "油页岩灰掺量（质量分数）。油页岩燃烧发电产生的灰，富硅铝，可作地聚物前驱体",
+      "aliases": [
+        "oil shale ash",
+        "油页岩灰"
+      ]
+    },
+    {
+      "name": "DA",
+      "label": "脱硫灰",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "脱硫灰掺量（质量分数）。烧结烟气半干法/干法脱硫产物，主要成分 Ca(OH)2 和 CaSO4；不是 DG（脱硫石膏）",
+      "aliases": [
+        "desulfurization ash",
+        "desulphurization ash",
+        "脱硫灰",
+        "烧结烟气脱硫灰"
+      ]
+    },
+    {
+      "name": "PT",
+      "label": "磷尾矿",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "磷尾矿掺量（质量分数）。磷矿选矿尾矿；不是 PG（磷石膏）",
+      "aliases": [
+        "phosphorus tailings",
+        "phosphate tailings",
+        "磷尾矿"
+      ]
+    },
+    {
+      "name": "LS",
+      "label": "锂渣",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "锂渣掺量（质量分数）。碳酸锂/氢氧化锂生产副产物；不是 LF（石灰石粉）",
+      "aliases": [
+        "lithium slag",
+        "锂渣"
+      ]
+    },
+    {
+      "name": "SP",
+      "label": "石粉",
+      "category": "原料",
+      "unit": "wt%",
+      "type": "continuous",
+      "computed": false,
+      "desc": "石粉掺量（质量分数）。机制砂生产副产物；不是 LF（石灰石粉）、不是 SS（钢渣）",
+      "aliases": [
+        "stone powder",
+        "石粉",
+        "机制砂石粉"
+      ]
+    },
+    {
       "name": "Ca/Si",
       "label": "钙硅摩尔比",
       "category": "成分",
@@ -513,5 +597,47 @@
       "computed": false,
       "desc": "软化系数，达标标准 ≥0.75"
     }
+  ],
+  "output": [
+    "OPC",
+    "CG",
+    "CFBFA",
+    "FA",
+    "RM",
+    "CC",
+    "GGBS",
+    "SS",
+    "PG",
+    "PS",
+    "DG",
+    "CS",
+    "EMR",
+    "CGS",
+    "SF",
+    "LF",
+    "OSA",
+    "DA",
+    "SR",
+    "PT",
+    "LS",
+    "SP",
+    "Ca(OH)2",
+    "NaOH",
+    "Na2SO4",
+    "Ca/Si",
+    "Si/Al",
+    "Na/Al",
+    "MgO",
+    "Fe2O3",
+    "K2O",
+    "SO3",
+    "T",
+    "WRA",
+    "MNa2SiO3",
+    "AA",
+    "WB",
+    "SB",
+    "C-28d",
+    "FL"
   ]
 }

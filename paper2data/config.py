@@ -54,6 +54,20 @@ class Settings:
         return os.getenv("PAPER2DATA_VISION_MODEL", "deepseek-v4-flash-vision-exp")
 
     @property
+    def vision_api_key(self) -> str:
+        """读图模型独立的 key。**没设就回退到 DeepSeek**（老行为不变）。
+
+        这样接 SiliconFlow / OpenRouter / 智谱时，文本抽取和读图可以用不同平台，
+        交叉验证只要换 `PAPER2DATA_VISION_MODEL` + 对应 key 即可。
+        """
+        return os.getenv("PAPER2DATA_VISION_API_KEY", "") or self.deepseek_api_key
+
+    @property
+    def vision_base_url(self) -> str:
+        """读图模型独立的 base_url。没设就回退到 DeepSeek。"""
+        return os.getenv("PAPER2DATA_VISION_BASE_URL", "") or self.deepseek_base_url
+
+    @property
     def max_retries(self) -> int:
         return int(os.getenv("PAPER2DATA_MAX_RETRIES", "3"))
 

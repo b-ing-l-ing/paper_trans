@@ -26,7 +26,7 @@ import re
 from dataclasses import dataclass, field
 from typing import Any, Iterable, Iterator
 
-from ..compute import split_number_unit
+from ..compute import is_empty_value as _is_empty, split_number_unit
 from ..schema import Schema
 
 logger = logging.getLogger(__name__)
@@ -35,8 +35,8 @@ _SNIPPET_RADIUS = 80        # 证据句上下文半径（字符）
 _MAX_CELL_LEN = 40          # 表格证据里单元格的最大长度
 _MAX_HITS = 5               # 同一个值最多记几处出现
 
-# 这些「值」等于没填，不生成候选、不进分母
-_EMPTY_VALUES = {"", "-", "—", "–", "n/a", "na", "none", "null", "未提及", "未报道", "无"}
+# 空值判定与归一化层共用一份定义（compute.EMPTY_VALUES）：`_is_empty` 直接导入，
+# 保证「溯源说空」和「输出成空格子」永远是同一批值。
 
 # 期刊页眉 / 元数据噪声：命中这些片段的位置不算证据
 _NOISE_RES = [
@@ -333,13 +333,6 @@ def _field_contexts(schema: Schema, new_fields: list | None) -> dict[str, _Field
             computed=False,
         )
     return ctxs
-
-
-def _is_empty(raw: Any) -> bool:
-    if raw is None:
-        return True
-    s = str(raw).strip().lower()
-    return s in _EMPTY_VALUES
 
 
 def _locate_one(
