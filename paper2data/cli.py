@@ -100,8 +100,15 @@ def extract_pdf(
                 if out:
                     figure_texts.append(out)
         if figure_texts:
-            text += "\n\n## 图表数据(从图提取)\n" + "\n\n".join(f["text"] for f in figure_texts)
-            print(f"  从 {len(figure_texts)} 张图提取到图表数据")
+            # ⚠️ 图文本必须放在**正文前面**：dev02 正文 62k 字符，图文本 6.7k，
+            # 拼在末尾会被 text_limit 截断（之前 40k）——所有读数白做。
+            fig_block = "## 图表数据(从图提取)\n" + "\n\n".join(f["text"] for f in figure_texts)
+            text = fig_block + "\n\n## 论文正文\n" + text
+            print(f"  从 {len(figure_texts)} 张图提取到图表数据（已前置，避免被截断）")
+            # 贯穿性检查：图文本到底有没有完整进入 prompt、有没有被截断
+            limit = 120000
+            print(f"  [检查] 图文本 {len(fig_block)} 字符 / 总文本 {len(text)} 字符 / "
+                  f"上限 {limit} → {'⚠ 会截断' if len(text) > limit else '完整送入'}")
     _t_fig = time.time() - _t2
     if debug:
         dbg_fig = output.with_name(output.stem + ".figures.txt")

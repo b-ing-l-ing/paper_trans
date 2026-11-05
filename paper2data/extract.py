@@ -26,7 +26,7 @@ def extract_dataset(
     text: str,
     schema: Schema,
     model: str | None = None,
-    text_limit: int = 40000,
+    text_limit: int = 120000,
 ) -> ExtractResult:
     """从论文文本抽取数据集。
 
