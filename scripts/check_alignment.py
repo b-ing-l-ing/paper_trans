@@ -40,10 +40,19 @@ _ROW_RE = re.compile(r"^\s*-\s*([^:：]+)[:：]\s*([-+]?\d+(?:\.\d+)?)")
 _SERIES_RE = re.compile(r"^\[(.+?)\]")
 
 
+_SUBFIG_RE = re.compile(r"子图(\d+)")
+# 系统名必须是「全大写 + 连字符」的形式（PG-GGBS-OPC / PG-GGBS-OPC-CS）；
+# 原来的 [A-Za-z0-9-]+ 会把 "(a) 28-day"、"(b) Bar graph" 也当成系统名。
+_SYS_RE = re.compile(r"\(([a-z])\)\s*([A-Z]{2,}(?:-[A-Z]{2,})+)")
+_SYS_NAME_RE = re.compile(r"\b[A-Z]{2,}(?:-[A-Z]{2,})+\b")
+
+
 def parse_figures(path: str) -> list[dict]:
-    """figures.txt → [{page, y_label, series, items: [(编号, 值)]}]"""
+    """figures.txt → [{page, y_label, series, caption, sub_idx, items: [(编号, 值)]}]"""
     blocks: list[dict] = []
     cur = None
+    fig_caption = ""
+    sub_idx = 0
 
     def flush():
         if cur and cur["items"]:
@@ -53,26 +62,58 @@ def parse_figures(path: str) -> list[dict]:
         if line.startswith("### "):
             flush()
             cur = {"page": line[4:].split()[0] if line[4:] else "",
-                   "y_label": "", "series": "", "items": []}
+                   "y_label": "", "series": "", "caption": "", "sub_idx": 0, "items": []}
+            fig_caption = ""
+            sub_idx = 0
             continue
         if cur is None:
             continue
         s = line.strip()
         if not s:
             continue
+        if "图标题:" in s:
+            fig_caption = s.split("图标题:", 1)[-1].strip()
+            continue
+        ms = _SUBFIG_RE.search(s)
+        if ms:
+            sub_idx = int(ms.group(1))
         if s.startswith("图") and "纵轴" in s:
             cur["y_label"] = s.split("纵轴:", 1)[-1].strip()
+            cur["caption"] = fig_caption
+            cur["sub_idx"] = sub_idx
         m = _SERIES_RE.match(s)
         if m:
             flush()
             cur = {"page": cur["page"], "y_label": cur["y_label"],
-                   "series": m.group(1).strip(), "items": []}
+                   "series": m.group(1).strip(), "caption": cur["caption"],
+                   "sub_idx": cur["sub_idx"], "items": []}
             continue
         rm = _ROW_RE.match(s)
         if rm:
             cur["items"].append((rm.group(1).strip(), float(rm.group(2))))
     flush()
     return blocks
+
+
+def _system_for(block: dict) -> str:
+    """从图标题的 (a)/(b) 推断这个子图属于哪个实验体系。
+
+    `Fig. 5 ... (a) PG-GGBS-OPC and (b) PG-GGBS-CS` + 子图2 → `PG-GGBS-CS`。
+    这是解决「同编号跨体系」（两个 P10）的唯一线索。
+    """
+    caption = block.get("caption", "")
+    pairs = _SYS_RE.findall(caption)
+    idx = block.get("sub_idx", 0)
+    if pairs:
+        # 多面板图：子图1 → (a)，子图2 → (b)
+        if 1 <= idx <= len(pairs):
+            return pairs[idx - 1][1]
+        return ""
+    # 单系统图（Fig. 4/6 这种没有 (a)/(b) 的）：caption 里只出现一个系统名就用它
+    systems = set(_SYS_NAME_RE.findall(caption))
+    if len(systems) == 1:
+        return systems.pop()
+    return ""
 
 
 def _pick_field(block: dict) -> str | None:
@@ -103,25 +144,42 @@ def main() -> None:
     blocks = parse_figures(args.figures)
     out = pd.read_csv(args.output)
 
-    # 编号 → [(字段, 值)]；同一编号在多个块出现时会有多条（可能冲突）
-    by_id: dict[str, list[tuple[str, float]]] = {}
+    # 两级索引：
+    #   by_full  = 「系统-编号」→ [(字段, 值)]，来自 caption 的 (a)/(b) 推断
+    #   by_short = 短编号 → [(字段, 值)]，跨体系会混在一起（只作回退）
+    by_full: dict[str, list[tuple[str, float]]] = {}
+    by_short: dict[str, list[tuple[str, float]]] = {}
     for b in blocks:
         field = _pick_field(b)
         if not field:
             continue
+        sysname = _system_for(b)
         for label, v in b["items"]:
-            by_id.setdefault(label, []).append((field, v))
+            by_short.setdefault(label, []).append((field, v))
+            if sysname:
+                by_full.setdefault(f"{sysname}-{label}", []).append((field, v))
 
     if args.sample_ids and Path(args.sample_ids).exists():
         sids = json.loads(Path(args.sample_ids).read_text(encoding="utf-8"))
-        print(f"精检模式：{len(sids)} 行 / {len(by_id)} 个有读数的样品\n")
-        bad = amb = 0
+        print(f"精检模式：{len(sids)} 行 / {len(by_short)} 个短编号 / "
+              f"{len(by_full)} 个「系统-编号」\n")
+        bad = amb = missing_id = 0
+        used_short: set[str] = set()
         for i, sid in enumerate(sids):
             if not sid:
                 continue
             short = _short_id(sid)
-            pairs = by_id.get(short, [])
+            # 先用「系统-编号」精确查（caption 推断出的体系）；查不到再退回短编号
+            pairs = by_full.get(sid)
+            if pairs:
+                used_short.add(short)
+            else:
+                pairs = by_short.get(short, [])
+                if pairs:
+                    used_short.add(short)
             if not pairs:
+                missing_id += 1
+                print(f"  行{i+1} {sid}: ⚠ 输出有这个编号，但图文本里找不到它的读数")
                 continue
             # 同一编号在同一字段有多个不同值 → 图本身有歧义（不同实验组同名）
             per_field: dict[str, list[float]] = {}
@@ -141,7 +199,17 @@ def main() -> None:
                 elif not _close(fig_v, float(ov)):
                     print(f"  行{i+1} {sid} 的 {f}: 图 {fig_v} / 输出 {float(ov)}  ← 不一致")
                     bad += 1
-        print(f"\n{'发现 ' + str(bad) + ' 处不一致' + (f'、{amb} 处编号歧义' if amb else '') if bad or amb else '全部一致 ✅'}")
+        unref = set(by_short) - used_short
+        if unref:
+            print(f"  图里有读数、但输出的行没有引用这些编号：{sorted(unref)}")
+        parts = []
+        if bad:
+            parts.append(f"{bad} 处不一致")
+        if amb:
+            parts.append(f"{amb} 处编号歧义")
+        if missing_id:
+            parts.append(f"{missing_id} 个编号在图里找不到")
+        print(f"\n{'、'.join(parts) if parts else '全部一致 ✅'}")
         return
 
     # 粗检
