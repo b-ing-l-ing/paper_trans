@@ -77,7 +77,7 @@ def main() -> None:
         records.append(rec)
         index_map.append(i + 1)
 
-    _, pages_text, _ = parse_pdf(args.pdf, image_dir="./output/images")
+    _, pages_text, _, _ = parse_pdf(args.pdf, image_dir="./output/images")
     figures = _load_figures(args.figures)
     print(f"正文 {len(pages_text)} 页 / 图文本 {len(figures)} 块")
 

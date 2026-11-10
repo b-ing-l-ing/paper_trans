@@ -12,7 +12,7 @@ pdf = 'PDFs/固化剂对碱激发固废胶凝材料稳定不锈钢渣的性能�
 schema = Schema.load('paper2data/schema.json')
 
 # 1. 解析
-text, pages_text, pages_images = parse_pdf(pdf, image_dir='./output_p2d_test/images')
+text, pages_text, pages_images, _ = parse_pdf(pdf, image_dir='./output_p2d_test/images')
 tables = detect_tables(pdf)
 print(f'[1] 解析: {len(text):,} 字符, {len(tables)} 个表格, {len(pages_images)} 页含图')
 

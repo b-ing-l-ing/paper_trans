@@ -155,10 +155,42 @@ def _dedup_images(
     return {pn: files for pn, files in filtered.items() if files}
 
 
+_CAPTION_RE = re.compile(r"^\s*(Fig\.?|Figure|图)\s*\d+", re.IGNORECASE)
+
+
+def _find_caption(page, img_rect) -> str:
+    """给一张图找最近的图标题（规则 + 空间邻近，行业主流做法）。
+
+    优先「图片正下方」的 Fig./Figure 文本块，其次「正上方」；
+    要求 x 范围有重叠、y 距离 ≤150pt。找不到返回空串（宁缺勿错）。
+    """
+    if img_rect is None:
+        return ""
+    best = None
+    for b in page.get_text("blocks"):
+        x0, y0, x1, y1, text = b[0], b[1], b[2], b[3], b[4]
+        if not _CAPTION_RE.match(text or ""):
+            continue
+        # 水平方向要跟图片有重叠（留 20pt 容差）
+        if x1 < img_rect.x0 - 20 or x0 > img_rect.x1 + 20:
+            continue
+        below = y0 - img_rect.y1          # 标题在图下方
+        above = img_rect.y0 - y1          # 标题在图上方
+        if 0 <= below <= 150:
+            dist = below
+        elif 0 <= above <= 150:
+            dist = above + 10             # 上方稍次（多见于表格/部分期刊）
+        else:
+            continue
+        if best is None or dist < best[0]:
+            best = (dist, re.sub(r"\s+", " ", text).strip())
+    return best[1] if best else ""
+
+
 def parse_pdf(
     pdf_path: str | Path,
     image_dir: str | Path = "./output/images",
-) -> tuple[str, dict[int, str], dict[int, list[str]]]:
+) -> tuple[str, dict[int, str], dict[int, list[str]], dict[str, str]]:
     """解析 PDF：提取文本和嵌入图片。
 
     Args:
@@ -166,10 +198,11 @@ def parse_pdf(
         image_dir: 图片输出目录。
 
     Returns:
-        (full_text, pages_text, pages_images)
+        (full_text, pages_text, pages_images, image_captions)
         - full_text: 全文纯文本，页间用双换行分隔。
         - pages_text: {页码: 文本}。
         - pages_images: {页码: [图片文件名列表]}。
+        - image_captions: {图片文件名: 图标题}（bbox 邻近匹配，找不到的图不在里面）。
     """
     out = Path(image_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -184,6 +217,8 @@ def parse_pdf(
     doc = fitz.open(str(pdf_path))
     pages_text: dict[int, str] = {}
     pages_images: dict[int, list[str]] = defaultdict(list)
+    # 图片文件名 → 图标题（按 bbox 邻近匹配；找不到就不放）
+    image_captions: dict[str, str] = {}
 
     # pdfplumber 提取文本（布局感知，保留表格列对齐）
     try:
@@ -205,6 +240,9 @@ def parse_pdf(
     for page_num, page in enumerate(doc, 1):
         for img_idx, img in enumerate(page.get_images()):
             xref = img[0]
+            # 先算这张图最近的 caption（bbox 邻近），下面每个保存分支都会带上
+            rects = page.get_image_rects(xref)
+            caption = _find_caption(page, rects[0]) if rects else ""
             try:
                 base_image = doc.extract_image(xref)
             except Exception:
@@ -222,6 +260,8 @@ def parse_pdf(
                 filename = f"{prefix}_p{page_num}_img{img_idx + 1}.png"
                 (out / filename).write_bytes(img_bytes)
                 pages_images[page_num].append(filename)
+                if caption:
+                    image_captions[filename] = caption
                 continue
             ext = base_image["ext"]
             img_bytes = base_image["image"]
@@ -248,6 +288,8 @@ def parse_pdf(
                     pil_img.save(out / filename, "PNG")
 
             pages_images[page_num].append(filename)
+            if caption:
+                image_captions[filename] = caption
 
     # 提取表格结构数据（PyMuPDF lines 策略，有线框表）
     table_md = _extract_tables(doc)
@@ -264,4 +306,4 @@ def parse_pdf(
     # 标记潜在的表格区域（帮助 LLM 聚焦）
     full_text = _mark_tables(full_text)
 
-    return full_text, pages_text, pages_images
+    return full_text, pages_text, pages_images, image_captions

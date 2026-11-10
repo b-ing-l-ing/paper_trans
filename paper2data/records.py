@@ -43,3 +43,10 @@ class ExtractResult(BaseModel):
     notes: Optional[str] = Field(
         default=None, description="抽取备注（无法确定的字段、缺失原因等）"
     )
+    sample_mapping: dict[str, str] = Field(
+        default_factory=dict,
+        description=(
+            "样品编号 → 配方 的对应关系，如 {'C5': 'PG 40 / GGBS 55 / CS 5'}。"
+            "用于核对「图用编号、表用配方」时的对齐；找不到配方的编号不要编。"
+        ),
+    )

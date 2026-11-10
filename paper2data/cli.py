@@ -58,7 +58,9 @@ def extract_pdf(
     import time
     _t0 = time.time()
     print(f"解析 PDF: {pdf.name}")
-    text, pages_text, pages_images = parse_pdf(pdf, image_dir=settings.image_dir)
+    text, pages_text, pages_images, image_captions = parse_pdf(
+        pdf, image_dir=settings.image_dir
+    )
     _t_parse = time.time() - _t0
 
     # 接入坐标聚类表格（无边框表），与 PyMuPDF 的表格互补
@@ -86,7 +88,10 @@ def extract_pdf(
         def _one(pn: int, fname: str) -> dict | None:
             img_path = Path(settings.image_dir) / fname
             try:
-                ft = figure_to_text(str(img_path), figure_label=f"图(第{pn}页)")
+                ft = figure_to_text(
+                    str(img_path), figure_label=f"图(第{pn}页)",
+                    caption=image_captions.get(fname, ""),
+                )
                 return {"page": pn, "filename": fname, "text": ft} if ft else None
             except Exception as e:
                 logger.warning("图 %s 提取失败: %s", fname, e)
@@ -174,6 +179,25 @@ def extract_pdf(
         print(f"  ⚠ 规则校验发现 {len(issues)} 个问题：")
         for issue in issues:
             print(f"    行{issue['record_index']} [{issue['rule']}] {issue['message']}")
+
+    # 样品编号 → 配方 映射 + 每行的样品编号：落盘供
+    # 「图证据 vs 输出」核验（scripts/check_alignment.py）。
+    # 同配方多行（如两个 P10）只能靠 _sample_id 区分，不能靠配方。
+    if result.sample_mapping:
+        map_path = output.with_name(output.stem + ".mapping.json")
+        map_path.write_text(
+            json.dumps(result.sample_mapping, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        sid_path = output.with_name(output.stem + ".sample_ids.json")
+        sid_path.write_text(
+            json.dumps([r.get("_sample_id") for r in result.records],
+                       ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        if debug:
+            print(f"  [debug] 样品映射已写：{map_path.name}（{len(result.sample_mapping)} 条）")
+            print(f"  [debug] 行样品编号已写：{sid_path.name}（{len(result.records)} 行）")
 
     df = to_dataframe(normalized, schema, result.new_fields)
 

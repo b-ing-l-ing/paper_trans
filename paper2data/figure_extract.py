@@ -19,6 +19,7 @@ import logging
 import math
 import os
 import re
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 import numpy as np
@@ -122,11 +123,16 @@ def detect_subfigures(img_path: str) -> list[dict]:
     return data.get("subfigures", [])
 
 
-def figure_to_text(img_path: str, figure_label: str = "") -> str:
+def figure_to_text(img_path: str, figure_label: str = "", caption: str = "") -> str:
     """把一张图（可能含多个子图）转成文本描述，供 LLM 抽取时「融入」全文。
 
     先 vision 报粗 bbox 分割子图（解决错位布局），柱状图再代码找轴框精定位
     裁剪（轴框不受布局影响）；谱图/显微图无轴框，直接 vision 定性描述。
+
+    `caption` 是 PDF 里这张图的标题（按 bbox 邻近匹配来的，见 parser._find_caption）。
+    **必须带上**：同一编号在不同实验组重复时（如两个 P10），图文本里只有
+    "P10: 25" 分不清是哪个；标题里的 `(a) PG-GGBS-OPC and (b) PG-GGBS-CS`
+    才能让 LLM 对上是哪组。
     """
     import tempfile
 
@@ -146,19 +152,20 @@ def figure_to_text(img_path: str, figure_label: str = "") -> str:
     else:
         subfigs = detect_subfigures(img_path)
         if len(subfigs) <= 1:
-            return _single_figure_to_text(img_path, figure_label)
+            t = _single_figure_to_text(img_path, figure_label)
+            return _prepend_caption(t, figure_label, caption)
         blocks = [
             (sf.get("bbox", [0, 0, 1, 1]), sf.get("type"), sf.get("label") or f"子图{i + 1}")
             for i, sf in enumerate(subfigs)
         ]
 
-    texts: list[str] = []
     tmpdir = Path(tempfile.mkdtemp())
-    for i, (bbox, stype, label) in enumerate(blocks):
+
+    def _process(i: int, bbox, stype, label) -> str:
         try:
             x0, y0, x1, y1 = (float(v) for v in bbox)
         except (ValueError, TypeError):
-            continue
+            return ""
         # vision bbox 偏紧（常切掉 y 轴刻度数字/柱子），先外扩再精定位
         pad_ratio = 0.3
         dx = (x1 - x0) * pad_ratio
@@ -195,9 +202,27 @@ def figure_to_text(img_path: str, figure_label: str = "") -> str:
         crop.save(tmp_path)
         t = _single_figure_to_text(str(tmp_path), f"{figure_label}{label}", plot_bounds)
         tmp_path.unlink(missing_ok=True)
-        if t:
-            texts.append(t)
-    return "\n\n".join(texts)
+        return t or ""
+
+    # **图内子图并发**：之前只有图与图之间并发，SEM 图 6 块仍串行。
+    # 默认 2（图间并发 4 × 图内 2 = 8 路，实测 SiliconFlow 可承受）。
+    workers = max(1, int(os.getenv("PAPER2DATA_SUBFIG_WORKERS", "2")))
+
+    def _call(item):
+        i, (bbox, stype, label) = item
+        return _process(i, bbox, stype, label)
+
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        results = list(ex.map(_call, enumerate(blocks)))
+    texts = [t for t in results if t]
+    return _prepend_caption("\n\n".join(texts), figure_label, caption)
+
+
+def _prepend_caption(text: str, figure_label: str, caption: str) -> str:
+    """图标题放在该图文本的最前面（只放一次，不重复到每个子图）。"""
+    if not caption or not text:
+        return text
+    return f"{figure_label} 图标题: {caption}\n{text}"
 
 
 def _single_figure_to_text(
@@ -217,6 +242,12 @@ def _single_figure_to_text(
     # `12: [55, 45, 35]` 混进结果）。分类是 vision 的活，这里只是尊重它的结论。
     if ftype in ("other", "table"):
         return ""
+    # 谱图 / 显微图：`analyze_figure` 的 description 已经够用（它就是「一句话描述」），
+    # **不再发第二次 vision**——第二次只是把同一张图再描述一遍，白花 5~10 秒。
+    # dev02 实测：SEM 6 块 + XRD 3 块，一次就省 9 次调用。
+    if ftype in ("spectrum", "microscopy"):
+        desc = (analysis.get("description") or "").strip()
+        return f"{figure_label} {desc}".strip() if desc else ""
     # 无标签柱状图 → 代码反算（避免 vision 估读几何）
     # **默认关**（PAPER2DATA_FIGURE_VALUES=code 才走这条）：代码读柱状图待重设计，
     # 现阶段数值交给下面的 vision 分支。
