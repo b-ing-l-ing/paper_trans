@@ -56,7 +56,9 @@ def detect_tables(
             for start, end in regions:
                 table = _build_grid(cell_rows[start:end], rows[start:end])
                 if table and len(table["rows"]) >= min_rows:
-                    all_tables.append({"page": page_num, **table})
+                    ok, reason = validate_table(table)
+                    all_tables.append({"page": page_num, **table,
+                                       "valid": ok, "reason": reason})
 
     logger.info("检测到 %d 个表格结构", len(all_tables))
     return all_tables
@@ -192,6 +194,47 @@ def _is_number(s: str) -> bool:
     if not s:
         return False
     return s.replace(".", "").replace("-", "").replace("+", "").isdigit()
+
+
+def validate_table(table: dict) -> tuple[bool, str]:
+    """结构校验：这个网格像不像一张真表。返回 (是否可信, 原因)。
+
+    修好行聚类后检出率上来了，但会带出假表（dev03/dev05 实测）：
+    正文长句被当表头、数字行被当表头、表头重复插在数据里。
+    这些表贴进 prompt 会**主动误导 LLM**，所以宁可标不可信。
+    """
+    header = [str(h or "") for h in table.get("header", [])]
+    rows = table.get("rows", [])
+    if not header or not rows:
+        return False, "空表"
+    # ① 表头任何一格是长句 → 正文被当表头
+    if any(len(h) > 40 for h in header if h):
+        return False, "表头过长（像正文）"
+    # ①b 表头有重复列名 → 多级表头被压平，列映射会错
+    seen: set[str] = set()
+    for h in header:
+        if not h:
+            continue
+        if h in seen:
+            return False, f"表头重复列名「{h}」"
+        seen.add(h)
+    # ② 表头一半以上是数字 → 数字行被当表头
+    numeric_header = sum(1 for h in header if h and _is_number(h))
+    if numeric_header >= len(header) * 0.5:
+        return False, "表头是数字（数据行被当表头）"
+    # ③ 表头行重复出现在数据里 → 网格错位
+    for r in rows:
+        cells = [str(v or "") for v in r[: len(header)]]
+        if [c for c in cells if c] == [h for h in header if h]:
+            return False, "表头重复出现在数据里"
+    # ④ 至少 40% 的行有两个以上数字
+    data_rows = sum(
+        1 for r in rows
+        if sum(1 for v in r if v and _is_number(str(v))) >= 2
+    )
+    if data_rows / len(rows) < 0.4:
+        return False, "数字行不足 40%"
+    return True, ""
 
 
 # ---------------------------------------------------------------------------

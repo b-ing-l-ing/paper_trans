@@ -67,9 +67,10 @@ def extract_pdf(
     _t1 = time.time()
     detected = detect_tables(str(pdf))
     _t_table = time.time() - _t1
-    if detected:
-        text += "\n\n" + _format_detected_tables(detected)
-        print(f"  坐标聚类检测到 {len(detected)} 个无边框表格")
+    valid_tables = [t for t in detected if t.get("valid")]
+    if valid_tables:
+        text += "\n\n" + _format_detected_tables(valid_tables)
+    print(f"  坐标聚类：检出 {len(detected)} 个，结构可信 {len(valid_tables)} 个")
     if debug:
         dbg_tables = output.with_name(output.stem + ".tables.json")
         dbg_tables.write_text(
@@ -208,7 +209,7 @@ def extract_pdf(
 
 def _format_detected_tables(tables: list[dict]) -> str:
     """把坐标聚类检测到的表格转成 markdown 文本，喂给 LLM。"""
-    parts = ["## 坐标聚类表格（无边框表，精确结构）"]
+    parts = ["## 坐标聚类表格（无边框表，已通过结构校验：列数/表头唯一/数字行占比）"]
     for i, t in enumerate(tables, 1):
         header = t.get("header", [])
         if not header:
