@@ -116,11 +116,18 @@ def match_rows(gt: pd.DataFrame, pred: pd.DataFrame, mat_fields: list[str]) -> d
         for j in range(n_pred):
             sim[i, j], n_common[i, j] = similarity(gt.iloc[i], pred.iloc[j], mat_fields)
 
-    candidates = [
-        [j for j in range(n_pred)
-         if sim[i, j] >= SIM_THRESHOLD and n_common[i, j] >= MIN_COMMON]
-        for i in range(n_gt)
-    ]
+    # MIN_COMMON 要**相对真值行的有效原料数**放宽：
+    # 有的论文一行只有 2 种原料（如 GGBS + PG），固定要 3 个会把完全正确的行判成漏抽
+    # （dev03 实测：4 行配方全对，却因 n_common=2 被卡掉）。
+    candidates = []
+    for i in range(n_gt):
+        n_gt_eff = sum(1 for f in mat_fields if _effective(gt.iloc[i][f], True) is not None)
+        # 下限 2：只有 1 个共同原料不足以为「同一行」作证（可能是巧合）
+        req = max(2, min(MIN_COMMON, n_gt_eff))
+        candidates.append([
+            j for j in range(n_pred)
+            if sim[i, j] >= SIM_THRESHOLD and n_common[i, j] >= req
+        ])
 
     # 第二层触发条件：一条真值行有多个候选 **或** 多个真值行竞争同一个工具行
     # （后者也是身份歧义：两条真值行都只有同一个候选时，配给谁说不清）

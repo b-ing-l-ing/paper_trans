@@ -66,8 +66,14 @@ def detect_tables(
 # 第 1 步：词 → 行
 # ---------------------------------------------------------------------------
 
-def _lines_from_words(words: list[dict], y_gap_ratio: float = 2.5) -> list[list[dict]]:
-    """按 y 坐标把词聚合成行。阈值自适应（中位行间距 × ratio）。"""
+def _lines_from_words(words: list[dict], y_gap_ratio: float = 1.5) -> list[list[dict]]:
+    """按 y 坐标把词聚合成行。阈值自适应（**25% 分位**行间距 × ratio）。
+
+    ⚠️ 原来用**中位数 × 2.5**：正文行距（10~14pt）把中位数抬上去，
+    表格行距（8~9pt）反而被并进同一行——dev02 的 Table 2 整张表被压成 2 行，
+    `_table_regions` 判定不出来。改用 25% 分位（更接近最小行距）+ 1.5 倍，
+    表格行就能正常分开。
+    """
     if not words:
         return []
 
@@ -79,7 +85,11 @@ def _lines_from_words(words: list[dict], y_gap_ratio: float = 2.5) -> list[list[
         if g > 0.5:
             gaps.append(g)
     gaps.sort()
-    line_gap = max(gaps[len(gaps) // 2] * y_gap_ratio, 3.0) if gaps else 5.0
+    # 贴着**最小行距**走：同一行内词的 top 差通常 <2pt，
+    # 取 min×2 再兜底 3.0，表格行距（8~9pt）就能分开，正文行距更不在话下。
+    # 之前的「中位数×2.5 / 25%分位×1.5」都会被表格行距本身带偏。
+    base = gaps[0] if gaps else 1.5
+    line_gap = max(base * 2.0, 3.0)
 
     lines: list[list[dict]] = []
     cur: list[dict] = []

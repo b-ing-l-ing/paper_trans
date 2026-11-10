@@ -128,3 +128,22 @@ class TestRates(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestMinCommonAdaptive(unittest.TestCase):
+    """只有 2 种原料的论文不能被 MIN_COMMON=3 误杀（dev03 实测）。"""
+
+    def test_two_material_row_can_match(self):
+        gt = _df([{"CG": 30, "GGBS": 70}])          # 只有 2 个有效原料
+        pred = _df([{"CG": 30, "GGBS": 70}])
+        m = ev.match_rows(gt, pred, MAT)
+        self.assertEqual(len(m["pairs"]), 1, "2 个原料全相同，应该能配上")
+        self.assertEqual(m["pairs"][0], (0, 0))
+
+    def test_one_material_row_still_guarded(self):
+        """只有 1 个有效原料时信息太少，仍然不该直接配。"""
+        gt = _df([{"CG": 50}])
+        pred = _df([{"CG": 50}])
+        m = ev.match_rows(gt, pred, MAT)
+        # 1 个字段相同不足以确认同一行（可能是巧合）
+        self.assertEqual(len(m["pairs"]), 0, "只有 1 个原料不该判为匹配")
